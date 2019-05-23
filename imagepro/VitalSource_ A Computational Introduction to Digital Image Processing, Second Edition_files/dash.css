@@ -1,0 +1,489 @@
+@font-face {
+    font-family: 'Droid Serif';
+    font-style: normal;
+    font-weight: 400;
+	src: local('Droid Serif'), local('DroidSerif'), url('fonts/droid-serif.woff2') format('woff2'), url('fonts/droid-serif.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 500;
+	src: local('Fira Sans'), local('FiraSans'), url('fonts/FiraSans-Medium.woff2') format('woff2'), url('fonts/FiraSans-Medium.woff') format('woff');
+}
+
+html {
+    -webkit-text-size-adjust: 100%
+}
+
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body.dash {
+    margin: 0
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu,
+nav, section, summary {
+    display: block
+}
+
+audio, canvas, progress, video {
+    display: inline-block;
+    vertical-align: baseline
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden], template {
+    display: none
+}
+
+a {
+    background-color: transparent
+}
+
+a:active, a:hover {
+    outline: 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b, strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+small {
+    font-size: 80%
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 1em 40px
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0
+}
+
+pre {
+    overflow: auto
+}
+
+code, kbd, pre, samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+button {
+    overflow: visible
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled], html input[disabled] {
+    cursor: default
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+input {
+    line-height: normal
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    height: auto
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto
+}
+
+optgroup {
+    font-weight: bold
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0
+}
+
+td, th {
+    padding: 0
+}
+
+body.dash {
+    word-wrap: break-word
+}
+
+body.dash * {
+    max-width: 100% !important
+}
+
+body.dash * :focus {
+    outline: none
+}
+
+body.dash {
+    font-family: 'Droid Serif', Georgia, serif;
+    font-size: .9375rem;
+    line-height: 1.67;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 760px;
+    color: #333;
+    padding: 0 40px 0 40px;
+    position: relative;
+}
+
+body.dash td, body.dash th {
+	padding: 3px;
+}
+
+body.dash ol, body.dash ul, body.dash li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline
+}
+
+body.dash img {
+    max-width: 100%;
+    height: auto
+}
+
+body.dash a {
+    color: #0d8cd6;
+    text-decoration: none;
+    font-weight: bold
+}
+
+body.dash table {
+    width: 100%
+}
+
+body.dash .table {
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch
+}
+
+body.dash table figure {
+	margin: 0
+}
+
+body.dash .box {
+    border: 2px solid #dbdbdb;
+    background-color: #f5f5f5;
+    padding: 0 1rem;
+    margin: 1rem -1rem
+}
+
+body.dash .figure, body.dash .mediabox {
+    font-size: .75rem;
+    line-height: 1rem;
+    text-align: center;
+    margin-top: 1.5rem
+}
+
+body.dash .figure img, body.dash .mediabox img {
+    width: auto;
+    height: auto
+}
+
+body.dash .figure .caption, body.dash .mediabox .caption {
+    margin-top: -.25rem;
+    padding: .5rem;
+    background-color: #f5f5f5
+}
+
+body.dash .figure .caption .para, body.dash .mediabox .caption .para {
+    margin: 0
+}
+
+body.dash .qgroup .label {
+    float: left;
+}
+
+body.dash .qgroup .para {
+    /*margin-left: 50px;*/
+    margin-left: 30px;
+}
+
+body.dash .qgroup .para:empty { 
+    display: none; 
+}
+
+body.dash .qgroup .list { 
+    display: inline-block; 
+}
+
+body.dash .qgroup .list ul { 
+    padding-top: 0; 
+    padding-bottom: 0; 
+    margin-left: 20px; 
+    list-style: none 
+}
+
+body.dash ul {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    list-style: none;
+}
+
+body.dash ul li {
+    padding-left: 10px
+}
+
+body.dash li .label {
+    margin-left: -25px;
+    width: auto;
+    display: inline-block;
+    min-width: 25px;
+}
+
+body.dash li .label .label-inner {
+    padding-right: 10px;
+}
+
+body.dash .footnote .label {
+    padding-right: 20px
+}
+
+body.dash .vbk-epub-pagebreak {
+    font-size: .5rem;
+    line-height: 1rem;
+    margin-top: -1rem;
+    margin-right: -2rem;
+    color: #747496;
+    overflow: hidden;
+    text-align: right;
+    font-family: 'Roboto Light', 'Helvetica Nueue', Arial, sans-serif;
+    font-weight: normal;
+    position: absolute; 
+    width: 98%;
+    left: 0;
+}
+
+body.dash .vbk-epub-pagebreak:before {
+    content: attr(data-previous);
+    display: block;
+    border-bottom: 1px solid #d5d5e2
+}
+
+body.dash .vbk-epub-pagebreak:after {
+    display: block;
+    content: attr(title)
+}
+
+body.dash mono, body.dash tt {
+    font-family: 'Bitstream Vera Sans Mono', Courier, monospace
+}
+
+body.dash .sc {
+    text-transform: uppercase;
+    font-size: 90%
+}
+
+body.dash .so {
+    text-decoration: line-through
+}
+
+body.dash .bi {
+    font-style: italic;
+    font-weight: bold
+}
+
+body.dash .uu {
+	border-bottom: 3px double;
+}
+
+body.dash big {
+    font-size: larger
+}
+
+body.dash small {
+    font-size: smaller
+}
+
+body.dash .mono {
+    font-family: monospace
+}
+
+body.dash .stanza {
+    padding-bottom: 10px
+}
+
+body.dash .para { 
+	margin-top: 1em; margin-bottom: 1em; 
+}
+
+body.dash .def {
+    display: block;
+    margin-left: 40px;
+}
+
+body.dash .term {
+    font-weight: bold;
+}
+
+body.dash .box .deflist {
+  margin-top: 16px;
+}
+
+
+
+body.dash .title {
+    font-family: 'Fira Sans', 'Helvetica Nueue', Arial, sans-serif;
+	font-size: 1.5rem;
+	font-weight: 500;
+	line-height: 1.3;
+}
+
+body.dash .section .title
+{
+	font-size: 1rem;
+}
+
+body.dash .chapter .title
+{
+	font-size: 1rem;
+}
+
+body.dash .section .chapter .title
+{
+	margin-left: 18px;
+}
+
+body.dash .title b {
+	font-weight: 500;
+}
+
+body.dash .figure .title {
+	font-size: 1rem; 
+	line-height:1.38;
+}
+
+body.dash .figure .caption, body.dash .mediabox .caption, body.dash .footnote
+{ 
+	font-family: "Fira Sans"; 
+	font-size: 0.75rem; 
+	text-align: left; 
+	padding: 10px 12px; 
+	background-color: #f6f6f6; 
+}
+
+body.dash .block-math
+{
+	overflow-x: scroll;
+	overflow-y: hidden;
+	margin: 0;
+	padding: 10px 0;
+}
+
+body.dash .has-inline-math
+{
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+body.dash .graphic
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+

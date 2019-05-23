@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!-- saved from url=(0158)https://jigsaw.vitalsource.com/books/9781482247350/epub/cfi/6/16?jigsaw_brand=vitalsource&xdm_c=default8638&xdm_e=https%3A%2F%2Fonline.vitalsource.com&xdm_p=1 -->
+<html style="height:100%; width:100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Jigsaw</title>
+  <link rel="stylesheet" media="all" href="./application-08fe8741aebd612b54f23c03debca7f9f18a84aa85df484f578a59cca23eb183.css">
+  <script src="./application-f0bf7c5c0d22379f9911e96650480bd31caca94340a67034367514ccdfc6a5e0.js.download"></script>
+  <script type="text/javascript" src="./hammer.js.download"></script>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="A2Xy/H5M2ZBLa5sMfx3oYYJgSEAk9B3FaA5BxMwNhDY8TxZeObbl8dkyr5hfyPaBvkNQDMK4kvRLqZSbrLxiPQ==">
+    <script src="./index-347081a7e43dfd22a9f377d0ca17b2b3165646fbd1814ed8a212d38c010d5a43.js.download"></script>
+  <script type="text/javascript">
+    // This data needs to be made available to the code that instantiates the VST.Book object
+VST.currentBookData = {"title":"A Computational Introduction to Digital Image Processing, Second Edition","author":"Alasdair McAndrew","isbn":"9781482247350","edition":2,"vbkType":"epub","url":"/books/9781482247350","coverURL":"//covers.vitalbook.com/vbid/9781482247350/width/:width?style=preview","hasPageBreaks":true,"format":"epub","lsiId":null,"hasAncillaries":false,"intendedUses":["code-api"],"viewedAt":"2018-11-07T12:23:58.000Z","addedAt":"2018-10-13T10:43:39.000Z","layout":"reflowable","expiresAt":"2019-10-13T10:29:08.000Z","hasFigures":true,"features":[],"contextToken":null,"hasLicense":true,"coverWidths":[20,25,28,30,32,35,60,120,150,200,240,320,480,640,720,768,960,1024],"builtAt":"2017-10-03T15:42:26.000Z","copyLimit":2,"printLimit":2,"pathPrefix":"/books/:isbn/epub","apiPathPrefix":"/api/v0/books/:isbn"};
+
+  </script>
+  <script type="text/javascript">
+  /* For iframe layouts and gestures */
+
+var startCX = 0.0, startCY = 0.0, sX=0.0, sY=0.0, sDistance=0.0, sScrollX, sScrollY,
+    scale=1, last_scale, epubContainerHeightd2, epubContainerWidthd2,
+    last_distance, last_coords, no_x, no_y,
+    resize_iframe = true, hammer_processing = false, checking_page = false,
+    just_zoomed = false;
+    var innerBody;
+    var touch = {};
+
+    var gonext = false;
+    var goprev = false;
+    var zoomDisabled = false;
+    var swipeDisabled = false;
+    var content_init_width = 0;
+    var content_init_height = 0;
+    var epubContent;
+
+    var timeouts = [];
+
+    var touchmoveEventType="touchmove";
+    var touchstartEventType="touchstart";
+    var touchendEventType="touchend";
+
+function update_iframe_size(id){
+  // !!!!!!!
+  // we are returning immediately here
+  // I want to see what happens without this stuff - we shouldn't need to set iframe dimensions on iOS because
+  // iOS expands the iframe to its content height (and width, unfortunately)
+  if (Browser.isIOS()){
+    // However! This solution sets a max width for the inner content body and sets the overflow to hidden
+    // It fixes the issue where iOS is a bit forceful on setting the iframe size to the content body
+    // because it forces a max width to the content body.  Not sure if content will be angry about this,
+    // but any content worth its responsiveness should be good to go.
+    var innerBody = VST.document.body;
+    var innerHTML = innerBody.parentElement;
+    $(innerBody).css('max-width', $(window).width());
+    $(innerBody).css('overflow', 'hidden');
+    $(innerHTML).css('overflow', 'hidden');
+  }
+  return;
+
+  if (resize_iframe){
+    if (Browser.isIOS()){
+      var stop = $("#"+id).scrollTop()
+        , sleft = $("#"+id).scrollLeft()
+        , innerBody = VST.document.body
+        , newwidth=($(innerBody).width()+parseFloat($(innerBody).css("margin-left"))+parseFloat($(innerBody).css("margin-right"))+parseFloat($(innerBody).css("padding-left"))+parseFloat($(innerBody).css("padding-right")))
+        , newheight=($(innerBody).height()+parseFloat($(innerBody).css("margin-top"))+parseFloat($(innerBody).css("margin-bottom"))+parseFloat($(innerBody).css("padding-top"))+parseFloat($(innerBody).css("padding-bottom")));
+
+      var $el = $("#"+id)
+        ,  el = $el[0];
+
+      var amendedScale = scale || 1;
+      content_init_width = newwidth/amendedScale;
+      content_init_height = newheight/amendedScale;
+
+      $el.css("overflow","visible");
+      el.style.height = Math.round(content_init_height)+"px";
+      el.style.width = Math.round(content_init_width)+"px";
+
+      $el.scrollTop(stop);
+      $el.scrollLeft(sleft);
+    }
+  }
+}
+
+function init_zoom_gestures(){
+
+  var epubContent = document.getElementById('epub-content');
+
+  startCX = 0.0; startCY = 0.0; sX=0.0; sY=0.0;
+
+  scale=1; last_scale = 1.0;
+  last_distance = undefined; last_coords = undefined;
+  resize_iframe = true; hammer_processing = false, checking_page = false;
+  no_x = false; no_y = false;
+  innerBody = epubContent.contentWindow.document.body;
+  if (Browser.isSurface()){
+    $(innerBody).css("-ms-touch-action","pan-x pan-y pinch-zoom");
+    $(innerBody).css("touch-action","pan-x pan-y pinch-zoom");
+    $(innerBody).css("-ms-content-zooming","zoom");
+    $(innerBody).css("content-zooming","zoom");
+  }
+  goprev = false;
+  gonext = false;
+  window.addEventListener('resize', function(){
+    VST.fire('page:resize');
+    update_iframe_size("epub-content");
+  });
+
+  // required for correct zoom point registration
+  epubContent.style.transformOrigin = "0 0";
+  epubContent.style.oTransformOrigin = "0 0";
+  epubContent.style.msTransformOrigin = "0 0";
+  epubContent.style.mozTransformOrigin = "0 0";
+  epubContent.style.webkitTransformOrigin = "0 0";
+
+  // might need to check this in the event handler
+  Jigsaw.socket.zoomDisabled(function(disabled){
+    zoomDisabled = disabled;
+  });
+  Jigsaw.socket.swipeDisabled(function(disabled){
+    swipeDisabled = disabled;
+  });
+
+  var scroll_threshold = 100;
+
+
+  $("#epub-container").scroll(function(event){
+    if (!Jigsaw.touchEventsEnabled()){
+      event.preventDefault();
+      return false;
+    }
+  });
+
+  $(document.getElementById("epub-content").contentWindow).scroll(function(event){
+    if (!Jigsaw.touchEventsEnabled()){
+      event.preventDefault();
+      return false;
+    }
+  });
+
+  VST.bind('page:scroll',function(){
+    VST.fire("page:transform", Jigsaw.getContainerDimensions());
+  });
+
+  if (Browser.isIOS()){
+    $("#epub-container").css("display","none");
+    timeouts.push(
+      setTimeout( function(){
+        $("#epub-container").css("display","block");
+      },10)
+    );
+  }
+
+  var zoomEl = $(innerBody).get(0);
+
+  zoomEl.addEventListener(touchstartEventType, touchStartEvent);
+  zoomEl.addEventListener(touchendEventType, touchEndEvent);
+  zoomEl.addEventListener(touchmoveEventType, touchMoveEvent);
+  zoomEl.addEventListener('MSPointerLeave', touchEndEvent);
+  zoomEl.addEventListener('MSPointerEnter', touchStartEvent);
+}
+
+function touchStartEvent(event){
+  addCurrentTouches(event);
+  epubContent = document.getElementById('epub-content');
+  innerBody = epubContent.contentWindow.document.body;
+  if (!event.isPrimary && Browser.isSurface()){ return; }
+  last_distance = undefined;
+  last_coords = undefined;
+  touch = {};
+  touch.x1 = currentTouches[0].pageX;
+  touch.y1 = currentTouches[0].pageY;
+  return true;
+}
+
+function touchEndEvent(event){
+  removeCurrentTouches(event);
+  epubContent = document.getElementById('epub-content');
+  innerBody = epubContent.contentWindow.document.body;
+  if (!event.isPrimary && Browser.isSurface()){ return; }
+  if (gonext){
+    $(innerBody).unbind();
+    $(innerBody).children().remove();
+    Jigsaw.goToNextPage();
+    last_coords = undefined;
+    return false;
+  } else if (goprev){
+    $(innerBody).unbind();
+    $(innerBody).children().remove();
+    Jigsaw.goToPreviousPage();
+    last_coords = undefined;
+    return false;
+  }
+  if (!resize_iframe){
+    hammer_processing = true;
+    last_scale = scale;
+    update_iframe_size('epub-content');
+    timeouts.push(setTimeout(function(){update_iframe_size('epub-content');},100));
+    hammer_processing = false;
+    resize_iframe = true;
+  }
+  if (just_zoomed){
+    epubContent.style.display='none';
+    epubContent.offsetHeight; // no need to store this anywhere, the reference is enough
+    epubContent.style.display='block';
+
+    epubContent.style.transformOrigin = "0 0";
+    epubContent.style.oTransformOrigin = "0 0";
+    epubContent.style.msTransformOrigin = "0 0";
+    epubContent.style.mozTransformOrigin = "0 0";
+    epubContent.style.webkitTransformOrigin = "0 0";
+
+    last_scale = scale;
+    $("#epub-container").scrollTop((sY*scale)-($("#epub-container").height()/2.0));
+    $("#epub-container").scrollLeft((sX*scale)-($("#epub-container").width()/2.0));
+  }
+  just_zoomed = false;
+
+  return true;
+}
+
+var amt = 0;
+function touchMoveEvent(event){
+  updateCurrentTouches(event);
+  if (!event.isPrimary && Browser.isSurface()){ return; }
+  if (checking_page || !Jigsaw.touchEventsEnabled()){
+    return true;
+  }
+  if (currentTouches.length==2){
+    if(!zoomDisabled){
+      if (event.originalEvent){ event.originalEvent.preventDefault(); } else { event.preventDefault(); }
+      if(navigator.userAgent.match(/Android/i) ) {
+        event.preventDefault();
+      }
+      if (resize_iframe){
+        hammer_processing = true;
+        resize_iframe = false;
+        sY = ((currentTouches[0].pageY+currentTouches[1].pageY)/2.0);
+        sX = ((currentTouches[0].pageX+currentTouches[1].pageX)/2.0);
+        sDistance = Math.sqrt(Math.pow((currentTouches[0].screenY-currentTouches[1].screenY),2)+Math.pow((currentTouches[0].screenX-currentTouches[1].screenX),2));
+        var top = (sY)+"px";
+        var left = (sX)+"px";
+        sScrollY = $("#epub-container").scrollTop();
+        sScrollX = $("#epub-container").scrollLeft();
+        startCY = sY;
+        startCX = sX;
+        left = (sX+sScrollX*last_scale)+"px";
+        top = (sY+sScrollY*last_scale)+"px";
+        left = "0";
+        top = "0";
+        epubContent.style.transformOrigin = left+" "+top;
+        epubContent.style.oTransformOrigin = left+" "+top;
+        epubContent.style.msTransformOrigin = left+" "+top;
+        epubContent.style.mozTransformOrigin = left+" "+top;
+        epubContent.style.webkitTransformOrigin = left+" "+top;
+        $("#epub-container").scrollTop((sY*last_scale)-($("#epub-container").height()/2.0));
+        $("#epub-container").scrollLeft((sX*last_scale)-($("#epub-container").width()/2.0));
+
+        epubContainerWidthd2 = $("#epub-container").width()/2.0;
+        epubContainerHeightd2 = $("#epub-container").height()/2.0;
+
+        hammer_processing = false;
+      }
+
+      if (hammer_processing || resize_iframe) { return true; }
+
+
+      if (amt>0){
+        event.preventDefault();
+        amt--;
+        return true;
+      }
+      amt = 5;
+
+      if (event.scale){
+        scale = Math.max(1,last_scale*event.scale);
+      } else {
+        var nDistance = Math.sqrt(Math.pow((currentTouches[0].screenY-currentTouches[1].screenY),2)+Math.pow((currentTouches[0].screenX-currentTouches[1].screenX),2));
+        scale = Math.max(1,last_scale*(nDistance/sDistance));
+      }
+      if (isNaN(scale)){
+        scale = 1;
+      }
+      if (scale>4){
+        scale = 4;
+      }
+      var transform = "scale("+scale+")";
+      if (scale === 1){
+        transform = "";
+      }
+      epubContent.style.transform = transform;
+      epubContent.style.oTransform = transform;
+      epubContent.style.msTransform = transform;
+      epubContent.style.mozTransform = transform;
+      epubContent.style.webkitTransform = transform;
+      just_zoomed = true;
+      $("#epub-container").scrollTop((sY*scale)-epubContainerHeightd2).scrollLeft((sX*scale)-epubContainerWidthd2);
+
+      VST.fire("page:transform", Jigsaw.getContainerDimensions());
+      hammer_processing = false;
+    } // if (!zoomDisabled)
+  } else if (!just_zoomed && !swipeDisabled) {
+    if ($("#epub-container").scrollLeft()<10 || $("#epub-container").scrollLeft()>$("#epub-content").width()-$("#epub-container").width()-10){
+      touch.x2 = currentTouches[0].pageX;
+      touch.y2 = currentTouches[0].pageY;
+      if (navigator.userAgent.match(/Android/i) &&
+          Math.abs(touch.x1 - touch.x2) > 20){
+        if (event.originalEvent){ event.originalEvent.preventDefault(); } else { event.preventDefault(); }
+      }
+      touch.x1 = currentTouches[0].pageX;
+      touch.y1 = currentTouches[0].pageY;
+
+      if (last_coords!=undefined){
+        if (!checking_page){
+          if (last_coords.pageX-currentTouches[0].pageX>40){
+            checking_page = true;
+            VST.Book.hasNextPage(function(error,data){
+              if (data){
+                gonext = true;
+              }
+              checking_page = false;
+            });
+          } else if (last_coords.pageX-currentTouches[0].pageX<-40){
+            checking_page = true;
+            VST.Book.hasPreviousPage(function(error,data){
+              if (data){
+                goprev = true;
+              }
+              checking_page = false;
+            });
+          } else if (Math.abs(last_coords.pageX-currentTouches[0].pageX) < 8) {
+            gonext = false;
+            goprev = false;
+          }
+        }
+      } else {
+        last_coords = {};
+      }
+      if (last_coords!=undefined){
+        last_coords.pageX = currentTouches[0].pageX;
+        last_coords.pageY = currentTouches[0].pageY;
+      }
+    }
+    return true;
+  }
+}
+
+function update_ms_pans(){
+  if (no_x && no_y){
+    $(innerBody).css("-ms-touch-action","none");
+  } else if (no_x){
+    $(innerBody).css("-ms-touch-action","pan-y");
+  } else if (no_y){
+    $(innerBody).css("-ms-touch-action","pan-x");
+  } else {
+    $(innerBody).css("-ms-touch-action","pan-x pan-y");
+  }
+}
+
+function handle_surface_scroll(event){
+  var cwin = document.getElementById("epub-content").contentWindow;
+  if ($(cwin).width()+$(cwin).scrollLeft() > $(VST.document).width()-5 || $(cwin).scrollLeft() < 5){
+    no_x = true;
+  }
+  if ($(cwin).height()+$(cwin).scrollTop() > $(VST.document).height()-5 || $(cwin).scrollTop() < 5){
+    no_y = true;
+  }
+  update_ms_pans();
+}
+
+var currentTouches = [];
+function addCurrentTouches(event){
+  if (event.touches){
+    currentTouches = event.touches
+  } else {
+    for (var i=0;i < currentTouches.length;i++){
+      if (currentTouches[i].pointerId==event.pointerId){
+        return;
+      }
+    }
+    currentTouches.push(event);
+  }
+}
+function removeCurrentTouches(event){
+  if (event.touches){
+    currentTouches = [];
+  } else {
+    for (var i=0;i < currentTouches.length;i++){
+      if (currentTouches[i].pointerId==event.pointerId){
+        currentTouches.splice(i,1);
+        break;
+      }
+    }
+  }
+}
+function updateCurrentTouches(event){
+  if (event.touches){
+    currentTouches = event.touches;
+  } else {
+    for (var i=0;i < currentTouches.length;i++){
+      if (currentTouches[i].pointerId==event.pointerId){
+        currentTouches[i] = event;
+      }
+    }
+  }
+}
+
+Jigsaw.bind('page:unload', function(){
+  currentTouches = [];
+  $(window).off("resize");
+  $("#epub-container").off("scroll");
+  // don't bring this back, it will break book:pagebreak events (or something else)
+  // VST.unbind("page:scroll");
+  for (var i=0;i < timeouts.length;i++){
+    clearTimeout(timeouts[i]);
+  }
+  timeouts = [];
+});
+
+Jigsaw.bind('page:ready', function(){
+  init_zoom_gestures();
+
+  var html = $(VST.document).find("html");
+  // Set text size zoom on page load
+  var percentage = VST.textSize || 1;
+  percentage = percentage * 100 + "%";
+  html.css("font-size", percentage);
+
+
+  // Set zoom scaling on page load
+  VST.zoomScaleFactor = VST.zoomScaleFactor || 1;
+  // Apply transform
+  if (VST.zoomScaleFactor === 1){
+    html.css("transform" , "");
+  } else {
+    html.css("transform" , "scale(" + VST.zoomScaleFactor + ")");
+  }
+  html.css("transform-origin" , "top left");
+
+  if (VST.pageScrollDisabled) {
+    Jigsaw.socketMethods.local.disableScrolling.method(function(){});
+  }
+
+  // Also need to force body element to scroll when zooming
+  $(VST.document).find("body").css("overflow", "auto");
+});
+
+Jigsaw.bind('page:load', function(){
+  timeouts = [];
+  if (Browser.isIOS()){
+    // timeouts.push(setTimeout(function(){update_iframe_size("epub-content")},1000));
+    update_iframe_size("epub-content");
+    //setInterval(function(){update_iframe_size("epub-content")},1000);
+    VST.isScrollRestriction = false;
+    VST.prepareScrollRestriction = function(){
+      if (VST.isScrollRestriction){ return true; }
+      VST.isScrollRestriction = true;
+      VST.prepareScrollRestrictionScroll = $("#container").scrollTop();
+      $("#container").css("overflow","hidden");
+      $("#container").scrollTop($(VST.document.body).height()/2-$("#container").height()/2);
+    };
+    VST.destroyScrollRestriction = function(){
+      if (!VST.isScrollRestriction){ return true; }
+      VST.isScrollRestriction = false;
+      $("#container").scrollTop(VST.prepareScrollRestrictionScroll);
+      $("#container").css("overflow","auto");
+    };
+    var jqc = document.getElementById("epub-content").contentWindow.$;
+
+    if (jqc!=undefined && jqc.fancybox!=undefined){
+      // fancybox 1.0
+      jqc(VST.document).bind('fancybox-cleanup',function(){ VST.destroyScrollRestriction(); });
+      jqc(VST.document).bind('fancybox-cancel',function(){ VST.destroyScrollRestriction(); });
+      jqc.fancybox.oldShowActivity = jqc.fancybox.showActivity;
+      jqc.fancybox.showActivity = function(){ VST.prepareScrollRestriction(); jqc.fancybox.oldShowActivity(); };
+
+      // fancybox 2.0
+      jqc(VST.document).bind('beforeClose.player',function(){ VST.destroyScrollRestriction(); });
+      jqc(VST.document).bind('onCancel.player',function(){ VST.destroyScrollRestriction(); });
+      jqc(VST.document).bind('beforeLoad.player',function(){ VST.prepareScrollRestriction(); });
+    }
+  } else {
+    $("#epub-container").css("overflow","hidden");
+    $("#epub-container").css("-webkit-overflow-scrolling","hidden");
+  }
+
+});
+
+function resetPDFTransform() {
+  var epubContent = document.getElementById('epub-content');
+  var transform = "scale("+scale+")";
+  if (scale === 1){
+    transform = "";
+  }
+  epubContent.style.transform = transform;
+  epubContent.style.oTransform = transform;
+  epubContent.style.msTransform = transform;
+  epubContent.style.mozTransform = transform;
+  epubContent.style.webkitTransform = transform;
+}
+
+// Zoom in/out text in pbk books.
+// direction can be 'increase', 'decrease', or 'normal' (reset to fit height or width)
+// Or, if it's a digit, zoom to that exact increment
+function zoomPDF(direction) {
+
+  var pdf = $(VST.document).find("#pbk-page");
+
+  var documentHeight = $(document).height();
+  var documentWidth = $(document).width();
+
+  // If we're resetting to normal heights, don't use absolute values for width/height
+  if (VST.fitMode == "height") {
+    pdf.css("height" , documentHeight);
+    pdf.css("width" , "auto");
+  } else {
+    pdf.css("height" , "auto");
+    pdf.css("width" , "100%");
+  }
+
+
+}
+
+</script>
+<style type="text/css">
+  #epub-container{
+    position:absolute;
+    top:0px;
+    left:0;
+    bottom:0;
+    right:0;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  #epub-content{
+    min-width: 100%;
+    min-height: 100%;
+  }
+  #scroll-stopper{
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    z-index: 1;
+    display:none;
+  }
+</style>
+
+  <style>
+
+
+html {
+  -ms-touch-action: none; /* Direct all pointer events to JavaScript code. */
+  touch-action: none;
+}
+  </style>
+
+  <script type="text/javascript">
+   if(typeof VST !== 'undefined'){
+     VST.brand                 = "vitalsource";
+     VST.pageViewFlags         = {"pbk":true,"epub":true,"dash":true};
+     VST.pageViewDuration      = 3000;
+     VST.pageViewFlushInterval = 90000
+   }
+  </script>
+</head>
+<body style="height:100%; width:100%; padding:0; margin:0;">
+  <!-- include lumberjack here -->
+<script src="./app.js(1).download"></script>
+<script src="./batched-page-view-logger-ff4e4d5b8019880e2fcd04b0ed3819ae0f535534c2ad741381b11811e027326f.js.download"></script>
+
+  <script src="./lumberjack-logger-2c92d53302b90298a256f6315ef115c8caa9d5771b0d959f95003aab396d936a.js.download"></script>
+
+  
+<div id="scroll-stopper"></div>
+<div id="epub-container" style="overflow: hidden;">
+	
+<iframe id="epub-content" src="./32[idloc_015.html" allowtransparency="true" scrolling="auto" frameborder="0" width="100%" height="100%" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" style="transform-origin: 0px 0px 0px;"></iframe></div>
+
+
+
+
+</body></html>

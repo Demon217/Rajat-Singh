@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" epub:prefix="vst: http://vitalsource.com/" style="font-size: 100%; transform-origin: left top 0px; min-width: 100%; width: 1px; text-size-adjust: 100%;">
+  <head>
+    <script type="text/javascript" id="vst-head-javascript" class="vst-ignore vst-skip">var VST = parent.VST; var EPUB = { Education: { retrieve: function(req, cb) { return VST.Book.retrieveActivityData(req, cb); }, send: function(req, cb) { return VST.Book.sendActivityData(req, cb); } } };</script>
+    <title>14 Image Coding and Compression</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="./dash.css" />
+  <style type="text/css" media="print">body &gt; * { display: none !important; height: 0px !important; width: 0px !important; overflow: hidden; }body:before { content: "To print, please use the print page range feature within the application."; display: block !important;}</style></head>
+  <body class="dash" epub:type="chapter" data-begin-o="0" data-begin-o2="0" data-begin-o3="0" data-o="0" id="eid13554" data-dashid="ch14" data-end-o="27087" data-end-o2="27087" data-end-o3="27087" style="overflow: auto;">
+    <span id="page_break_inline_403" class="vbk-epub-pagebreak" epub:type="pagebreak" title="403"> </span>
+    <h2 class="title" data-o="0" id="eid13555" data-out="14"><span class="label" data-o="0" id="eid13556"><span class="label-inner">14 </span></span>Image Coding and Compression</h2>
+    <section class="level" epub:type="subchapter" data-o="31" id="eid13557" data-dashid="lvl14_1">
+      <h2 class="title" data-o="31" id="eid13558" data-out="14.1"><span class="label" data-o="31" id="eid13559"><span class="label-inner">14.1 </span></span>Lossless and Lossy Compression</h2>
+      <div class="para" data-o="66" id="eid13560">We have seen that image files can be very large. It is thus important for reasons both of storage and file transfer to make these file sizes smaller, if possible. In <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_002.xhtml#eid658" data-o="232" id="eid13561" style="overflow-wrap: break-word;">Section 1.9</a> we touched briefly on the topic of compression; in this section, we investigate some standard compression methods. It will be necessary to distinguish between two different classes of compression methods: <i data-o="449" id="eid13562">lossless compression</i>, where all the information is retained, and <i data-o="514" id="eid13563">lossy compression</i> where some information is lost.</div>
+      <div class="para" data-o="563" id="eid13564">Lossless compression is preferred for images of legal, scientific, or political significance, where loss of data, even of apparent insignificance, could have considerable consequences. Unfortunately this style tends not to lead to high compression ratios. However, lossless compression is used as part of many standard image formats.</div>
+    </section>
+    <section class="level" epub:type="subchapter" data-o="896" id="eid13565" data-dashid="lvl14_2">
+      <h2 class="title" data-o="896" id="eid13566" data-out="14.2"><span class="label" data-o="896" id="eid13567"><span class="label-inner">14.2 </span></span>Huffman Coding</h2>
+      <div class="para" data-o="915" id="eid13568">The idea of Huffman coding is simple. Rather than using a fixed length code (8 bits) to represent the gray values in an image, we use a variable length code, with smaller length codes corresponding to more probable gray values.</div>
+      <div class="para" data-o="1142" id="eid13569">A small example will make this clear. Suppose we have a 2-bit grayscale image with only four gray levels: 0, 1, 2, 3, with the probabilities 0.2, 0.4, 0.3, and 0.1, respectively. That is, 20% of pixels in the image have gray value 50; 40% have gray value 100, and so on. The following table shows fixed length and variable length codes for this image:</div>
+      <div class="table" data-o="1493" id="eid13570" data-dashid="utbl403_1">
+        <div class="para" data-o="1493" id="eid13571" />
+        <table rules="groups" style="border-width:px;" data-o="1493" id="eid13572">
+          <colgroup span="1" data-o="1493" id="eid13573">
+            <col width="25%" span="1" data-o="1493" id="eid13574" />
+            <col width="25%" span="1" data-o="1493" id="eid13575" />
+            <col width="25%" span="1" data-o="1493" id="eid13576" />
+            <col width="25%" span="1" data-o="1493" id="eid13577" />
+          </colgroup>
+          <thead data-o="1493" id="eid13578">
+            <tr valign="bottom" style="vertical-align:bottom;" data-o="1493" id="eid13579">
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none solid solid ;border-width:1px;border-color:black;" data-o="1493" id="eid13580">
+                <div class="para" data-o="1493" id="eid13581">Gray Value</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none solid none;border-width:1px;border-color:black;" data-o="1503" id="eid13582">
+                <div class="para" data-o="1503" id="eid13583">Probability</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none solid none;border-width:1px;border-color:black;" data-o="1514" id="eid13584">
+                <div class="para" data-o="1514" id="eid13585">Fixed Code</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid solid solid none;border-width:1px;border-color:black;" data-o="1524" id="eid13586">
+                <div class="para" data-o="1524" id="eid13587">Variable Code</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody data-o="1537" id="eid13588">
+            <tr valign="top" style="vertical-align:top;" data-o="1537" id="eid13589">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none none solid ;border-width:1px;border-color:black;" data-o="1537" id="eid13590">
+                <div class="para" data-o="1537" id="eid13591">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none none none;border-width:1px;border-color:black;" data-o="1538" id="eid13592">
+                <div class="para" data-o="1538" id="eid13593">0.2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none none none;border-width:1px;border-color:black;" data-o="1541" id="eid13594">
+                <div class="para" data-o="1541" id="eid13595">00</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid solid none none;border-width:1px;border-color:black;" data-o="1543" id="eid13596">
+                <div class="para" data-o="1543" id="eid13597">000</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="1546" id="eid13598">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="1546" id="eid13599">
+                <div class="para" data-o="1546" id="eid13600">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="1547" id="eid13601">
+                <div class="para" data-o="1547" id="eid13602">0.4</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="1550" id="eid13603">
+                <div class="para" data-o="1550" id="eid13604">01</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="1552" id="eid13605">
+                <div class="para" data-o="1552" id="eid13606">1</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="1553" id="eid13607">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="1553" id="eid13608">
+                <div class="para" data-o="1553" id="eid13609">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="1554" id="eid13610">
+                <div class="para" data-o="1554" id="eid13611">0.3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="1557" id="eid13612">
+                <div class="para" data-o="1557" id="eid13613">10</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="1559" id="eid13614">
+                <div class="para" data-o="1559" id="eid13615">01</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="1561" id="eid13616">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none solid solid ;border-width:1px;border-color:black;" data-o="1561" id="eid13617">
+                <div class="para" data-o="1561" id="eid13618">3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none solid none;border-width:1px;border-color:black;" data-o="1562" id="eid13619">
+                <div class="para" data-o="1562" id="eid13620">0.1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none solid none;border-width:1px;border-color:black;" data-o="1565" id="eid13621">
+                <div class="para" data-o="1565" id="eid13622">11</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid solid none;border-width:1px;border-color:black;" data-o="1567" id="eid13623">
+                <div class="para" data-o="1567" id="eid13624">001</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="para" data-o="1570" id="eid13625">Now consider how this image has been compressed. Each gray value has its own unique identifying code. The average number of bits per pixel can be easily calculated as the expected value (in a probabilistic sense):</div>
+      <div class="para" style="text-align:center;" data-o="1783" id="eid13626">
+        <span class="inline" data-o="1783" id="eid13627">
+          <img width="356" height="16" class="inlinegraphic" src="./9781482247350_1461.jpg" data-o="1783" id="eid13628" />
+        </span>
+      </div>
+      <div class="para" data-o="1784" id="eid13629">Notice that the longest codewords are associated with the lowest probabilities. This average is indeed smaller than 2.</div>
+      <span id="page_break_inline_404" data-previous="403" class="vbk-epub-pagebreak" epub:type="pagebreak" title="404"> </span>
+      <div class="para" data-o="1902" id="eid13630">This can be made more precise by the notion of <i data-o="1949" id="eid13631">entropy</i>, which is a measure of the amount of information. Specifically, the entropy <i data-o="2033" id="eid13632">H</i> of an image is the theoretical minimum number of bits per pixel required to encode the image with no loss of information. It is defined by</div>
+      <div class="para" style="text-align:center;" data-o="2173" id="eid13633">
+        <span class="inline" data-o="2173" id="eid13634">
+          <img width="760" height="65" class="inlinegraphic" src="./9781482247350_1462.jpg" data-o="2173" id="eid13635" />
+        </span>
+      </div>
+      <div class="para" data-o="2174" id="eid13636">where the index <i data-o="2190" id="eid13637">i</i> is taken over all grayscales of the image, and <i data-o="2239" id="eid13638">p</i><sub data-o="2240" id="eid13639"><i data-o="2240" id="eid13640">i</i></sub> is the probability of gray level <i data-o="2275" id="eid13641">i</i> occurring in the image. Very good accounts of the basics of information theory and entropy are given by Roman [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17027" data-o="2388" id="eid13642" style="overflow-wrap: break-word;">39</a>] and Welsh [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17075" data-o="2403" id="eid13643" style="overflow-wrap: break-word;">55</a>]. In the example given above,</div>
+      <div class="para" style="text-align:center;" data-o="2435" id="eid13644">
+        <span class="inline" data-o="2435" id="eid13645">
+          <img width="549" height="29" class="inlinegraphic" src="./9781482247350_1463.jpg" data-o="2435" id="eid13646" />
+        </span>
+      </div>
+      <div class="para" data-o="2436" id="eid13647">This means that no matter what coding scheme is used, it will never use less than 1.8464 bits per pixel. On this basis, the Huffman coding scheme given above, giving an average number of bits per pixel much closer to this theoretical minimum than 2, provides a very good result.</div>
+      <div class="para" data-o="2714" id="eid13648">To obtain the Huffman code for a given image we proceed as follows:</div>
+      <div class="list" data-o="2781" id="eid13649">
+        <ul>
+          <li data-o="2781" id="eid13650">
+            <span class="label" data-o="2781" id="eid13651">
+              <span class="label-inner">1.</span>
+            </span>
+            <span class="item" data-o="2783" id="eid13652">Determine the probabilities of each gray value in the image.</span>
+          </li>
+          <li data-o="2843" id="eid13653">
+            <span class="label" data-o="2843" id="eid13654">
+              <span class="label-inner">2.</span>
+            </span>
+            <span class="item" data-o="2845" id="eid13655">Form a binary tree by adding probabilities two at a time, always taking the two lowest available values.</span>
+          </li>
+          <li data-o="2949" id="eid13656">
+            <span class="label" data-o="2949" id="eid13657">
+              <span class="label-inner">3.</span>
+            </span>
+            <span class="item" data-o="2951" id="eid13658">Now assign 0 and 1 arbitrarily to each branch of the tree from its apex.</span>
+          </li>
+          <li data-o="3023" id="eid13659">
+            <span class="label" data-o="3023" id="eid13660">
+              <span class="label-inner">4.</span>
+            </span>
+            <span class="item" data-o="3025" id="eid13661">Read the codes from the top down.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="para" data-o="3058" id="eid13662">To see how this works, consider the example of a 3-bit grayscale image (so the gray values are 0–7) with the following probabilities:</div>
+      <div class="table" data-o="3191" id="eid13663" data-dashid="utbl404_1">
+        <img width="760" height="65" class="graphic" src="./9781482247350_1462.jpg" aria-label=" Gray Value 0 1 2 3 4 5 6 7 Probability 0.19 0.25 0.21 0.16 0.08 0.06 0.03 0.02 " data-o="3191" id="eid13664" />
+        <div style="display: none;" class="textualrep" data-o="3192" id="eid13665"> Gray Value 0 1 2 3 4 5 6 7 Probability 0.19 0.25 0.21 0.16 0.08 0.06 0.03 0.02 </div>
+      </div>
+      <div class="para" data-o="3192" id="eid13666">For these probabilities, the entropy can be calculated to be 2.6508. We can now combine probabilities two at a time as shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid13668" data-o="3320" id="eid13667" style="overflow-wrap: break-word;">Figure 14.1</a>.</div>
+      <figure class="figure" data-o="3332" id="eid13668" data-dashid="fig14_1">
+        <img width="760" height="301" class="graphic" src="./9781482247350_1464.jpg" data-o="3374" id="eid13671" />
+        <figcaption>
+          <h2 class="title" data-o="3332" id="eid13669"><span class="label" data-o="3332" id="eid13670"><span class="label-inner">Figure 14.1: </span></span>Forming the Huffman code tree</h2>
+        </figcaption>
+      </figure>
+      <span id="page_break_inline_405" data-previous="404" class="vbk-epub-pagebreak" epub:type="pagebreak" title="405"> </span>
+      <figure class="figure" data-o="3375" id="eid13672" data-dashid="fig14_2">
+        <img width="760" height="312" class="graphic" src="./9781482247350_1465.jpg" data-o="3425" id="eid13675" />
+        <figcaption>
+          <h2 class="title" data-o="3375" id="eid13673"><span class="label" data-o="3375" id="eid13674"><span class="label-inner">Figure 14.2: </span></span>Assigning 0's and 1's to the branches</h2>
+        </figcaption>
+      </figure>
+      <div class="para" data-o="3426" id="eid13676">Note that if we have a choice of probabilities we choose arbitrarily. The second stage consists of arbitrarily assigning 0's and 1's to each branch of the tree just obtained. This is shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid13672" data-o="3618" id="eid13677" style="overflow-wrap: break-word;">Figure 14.2</a>.</div>
+      <div class="para" data-o="3630" id="eid13678">To obtain the codes for each gray value, start at the 1 on the top right, and work back toward the gray value in question, listing the numbers passed on the way. This produces:</div>
+      <div class="table" data-o="3806" id="eid13679" data-dashid="utbl405_1">
+        <div class="para" data-o="3806" id="eid13680" />
+        <table rules="groups" style="border-width:px;" data-o="3806" id="eid13681">
+          <colgroup span="1" data-o="3806" id="eid13682">
+            <col width="40%" span="1" data-o="3806" id="eid13683" />
+            <col width="60%" span="1" data-o="3806" id="eid13684" />
+          </colgroup>
+          <thead data-o="3806" id="eid13685">
+            <tr valign="bottom" style="vertical-align:bottom;" data-o="3806" id="eid13686">
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:solid none solid solid ;border-width:1px;border-color:black;" data-o="3806" id="eid13687">
+                <div class="para" data-o="3806" id="eid13688">Gray Value</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:solid solid solid none;border-width:1px;border-color:black;" data-o="3816" id="eid13689">
+                <div class="para" data-o="3816" id="eid13690">Huffman Code</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody data-o="3828" id="eid13691">
+            <tr valign="top" style="vertical-align:top;" data-o="3828" id="eid13692">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:solid none none solid ;border-width:1px;border-color:black;" data-o="3828" id="eid13693">
+                <div class="para" data-o="3828" id="eid13694">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:solid solid none none;border-width:1px;border-color:black;" data-o="3829" id="eid13695">
+                <div class="para" data-o="3829" id="eid13696">00</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3831" id="eid13697">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="3831" id="eid13698">
+                <div class="para" data-o="3831" id="eid13699">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="3832" id="eid13700">
+                <div class="para" data-o="3832" id="eid13701">10</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3834" id="eid13702">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="3834" id="eid13703">
+                <div class="para" data-o="3834" id="eid13704">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="3835" id="eid13705">
+                <div class="para" data-o="3835" id="eid13706">01</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3837" id="eid13707">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="3837" id="eid13708">
+                <div class="para" data-o="3837" id="eid13709">3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="3838" id="eid13710">
+                <div class="para" data-o="3838" id="eid13711">110</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3841" id="eid13712">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="3841" id="eid13713">
+                <div class="para" data-o="3841" id="eid13714">4</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="3842" id="eid13715">
+                <div class="para" data-o="3842" id="eid13716">1110</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3846" id="eid13717">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="3846" id="eid13718">
+                <div class="para" data-o="3846" id="eid13719">5</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="3847" id="eid13720">
+                <div class="para" data-o="3847" id="eid13721">11110</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3852" id="eid13722">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="3852" id="eid13723">
+                <div class="para" data-o="3852" id="eid13724">6</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="3853" id="eid13725">
+                <div class="para" data-o="3853" id="eid13726">111110</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="3859" id="eid13727">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:40%px;border-style:none none solid solid ;border-width:1px;border-color:black;" data-o="3859" id="eid13728">
+                <div class="para" data-o="3859" id="eid13729">h 7</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:60%px;border-style:none solid solid none;border-width:1px;border-color:black;" data-o="3862" id="eid13730">
+                <div class="para" data-o="3862" id="eid13731">111111</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="para" data-o="3868" id="eid13732">As above, we can evaluate the average number of bits per pixel as an expected value:</div>
+      <div class="para" style="text-align:center;" data-o="3952" id="eid13733">
+        <span class="inline" data-o="3952" id="eid13734">
+          <img width="419" height="41" class="inlinegraphic" src="./9781482247350_1466.jpg" data-o="3952" id="eid13735" />
+        </span>
+      </div>
+      <div class="para" data-o="3953" id="eid13736">which is a significant improvement over 3 bits per pixel, and very close to the theoretical minimum of 2.6508 given by the entropy.</div>
+      <div class="para" data-o="4084" id="eid13737">Huffman codes are <i data-o="4102" id="eid13738">uniquely decodable</i>, in that a string can be decoded in only one way. For example, consider the string</div>
+      <div class="para" style="text-align:center;" data-o="4203" id="eid13739">
+        <span class="inline" data-o="4203" id="eid13740">
+          <img width="479" height="11" class="inlinegraphic" src="./9781482247350_1467.jpg" data-o="4203" id="eid13741" />
+        </span>
+      </div>
+      <div class="para" data-o="4204" id="eid13742">to be decoded with the Huffman code generated above. There is no code word 1, or 11, so we may take the first three bits 110 as being the code for gray value 3. Notice also that no other code word begins with this string. For the next few bits, 1110 is a code word; no other begins with this string, and no other smaller string is a codeword. So we can decode this string as gray level 4. Continuing in this way we obtain:</div>
+      <div class="para" style="text-align:center;" data-o="4626" id="eid13743">
+        <span class="inline" data-o="4626" id="eid13744">
+          <img width="498" height="35" class="inlinegraphic" src="./9781482247350_1468.jpg" data-o="4626" id="eid13745" />
+        </span>
+      </div>
+      <span id="page_break_inline_406" data-previous="405" class="vbk-epub-pagebreak" epub:type="pagebreak" title="406"> </span>
+      <div class="para" data-o="4627" id="eid13746">as the decoding for this string.</div>
+      <div class="para" data-o="4659" id="eid13747">For more information about Huffman coding, and its limitations and generalizations, see [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid16949" data-o="4748" id="eid13748" style="overflow-wrap: break-word;">13</a>, <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17021" data-o="4752" id="eid13749" style="overflow-wrap: break-word;">37</a>].</div>
+    </section>
+    <section class="level" epub:type="subchapter" data-o="4756" id="eid13750" data-dashid="lvl14_3">
+      <h2 class="title" data-o="4756" id="eid13751" data-out="14.3"><span class="label" data-o="4756" id="eid13752"><span class="label-inner">14.3 </span></span>Run Length Encoding</h2>
+      <div class="para" data-o="4780" id="eid13753">Run length encoding (RLE) is based on a simple idea: to encode strings of zeros and ones by the number of repetitions in each string. RLE has become a standard in facsimile transmission. For a binary image, there are many different implementations of RLE; one method is to encode each line separately, starting with the number of 0's. So the following binary image:</div>
+      <figure class="figure" data-o="5145" id="eid13754" data-dashid="ufig14_1">
+        <img width="161" height="184" class="graphic" src="./9781482247350_1469.jpg" data-o="5145" id="eid13755" />
+      </figure>
+      <div class="para" data-o="5146" id="eid13756">would be encoded as</div>
+      <div class="para" style="text-align:center;" data-o="5165" id="eid13757">
+        <span class="inline" data-o="5165" id="eid13758">
+          <img width="232" height="16" class="inlinegraphic" src="./9781482247350_1470.jpg" data-o="5165" id="eid13759" />
+        </span>
+      </div>
+      <div class="para" data-o="5166" id="eid13760">Another method [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17057" data-o="5182" id="eid13761" style="overflow-wrap: break-word;">49</a>] is to encode each row as a list of pairs of numbers; the first number in each pair given the starting position of a run of 1's, and the second number its length. So the above binary image would have the encoding</div>
+      <div class="para" style="text-align:center;" data-o="5397" id="eid13762">
+        <span class="inline" data-o="5397" id="eid13763">
+          <img width="207" height="16" class="inlinegraphic" src="./9781482247350_1471.jpg" data-o="5397" id="eid13764" />
+        </span>
+      </div>
+      <div class="para" data-o="5398" id="eid13765">Grayscale images can be encoded by breaking them up into their <i data-o="5461" id="eid13766">bit planes</i>; these were discussed in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_004.xhtml#eid1911" data-o="5497" id="eid13767" style="overflow-wrap: break-word;">Chapter 3</a>.</div>
+      <div class="para" data-o="5507" id="eid13768">To give a simple example, consider the following 4-bit image and its binary representation:</div>
+      <figure class="figure" data-o="5598" id="eid13769" data-dashid="ufig14_2">
+        <img width="554" height="118" class="graphic" src="./9781482247350_1472.jpg" data-o="5598" id="eid13770" />
+      </figure>
+      <div class="para" data-o="5599" id="eid13771">We may break it into bit planes as shown:</div>
+      <figure class="figure" data-o="5640" id="eid13772" data-dashid="ufig14_3">
+        <img width="760" height="136" class="graphic" src="./9781482247350_1473.jpg" data-o="5640" id="eid13773" />
+      </figure>
+      <div class="para" data-o="5641" id="eid13774">and then each plane can be encoded separately using our chosen implementation of RLE.</div>
+      <div class="para" data-o="5726" id="eid13775">However, there is a problem with bit planes, and that is that small changes of gray value may cause significant changes in bits. For example, the change from value 7 to 8 causes the change of all four bits, since we are changing the binary strings 0111 to 1000. The problem <span id="page_break_inline_407" data-previous="406" class="vbk-epub-pagebreak" epub:type="pagebreak" title="407"> </span>is of course exacerbated for 8-bit images. For RLE to be effective, we should hope that long runs of very similar gray values would result in very good compression rates for the code. But this may not be the case. A 4-bit image consisting of randomly distributed 7's and 8's would thus result in uncorrelated bit planes, and little effective compression.</div>
+      <div class="para" data-o="6354" id="eid13776">To overcome this difficulty, we may encode the gray values with their binary <i data-o="6431" id="eid13777">Gray codes</i>. A Gray code is an ordering of all binary strings of a given length so that there is only one bit change between a string and the next. So, a 4-bit Gray code is:</div>
+      <figure class="figure" data-o="6603" id="eid13778" data-dashid="ufig14_4">
+        <img width="191" height="531" class="graphic" src="./9781482247350_1474.jpg" data-o="6603" id="eid13779" />
+      </figure>
+      <div class="para" data-o="6604" id="eid13780">See [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17021" data-o="6609" id="eid13781" style="overflow-wrap: break-word;">37</a>] for discussion and detail. To see the advantages, consider the following 4-bit image with its binary and Gray code encodings:</div>
+      <figure class="figure" data-o="6738" id="eid13782" data-dashid="ufig14_5">
+        <img width="760" height="95" class="graphic" src="./9781482247350_1475.jpg" data-o="6738" id="eid13783" />
+      </figure>
+      <div class="para" data-o="6739" id="eid13784">where the first binary array is the standard binary encoding, and the second array the Gray codes. The binary bit planes are:</div>
+      <figure class="figure" data-o="6864" id="eid13785" data-dashid="ufig14_6">
+        <img width="760" height="136" class="graphic" src="./9781482247350_1476.jpg" data-o="6864" id="eid13786" />
+      </figure>
+      <div class="para" data-o="6865" id="eid13787">and the bit planes corresponding to the Gray codes are:</div>
+      <figure class="figure" data-o="6920" id="eid13788" data-dashid="ufig14_7">
+        <img width="760" height="136" class="graphic" src="./9781482247350_1477.jpg" data-o="6920" id="eid13789" />
+      </figure>
+      <div class="para" data-o="6921" id="eid13790">Notice that the Gray code planes are highly correlated except for one bit plane, whereas all the binary bit planes are uncorrelated.</div>
+      <span id="page_break_inline_408" data-previous="407" class="vbk-epub-pagebreak" epub:type="pagebreak" title="408"> </span>
+      <section class="level" epub:type="subchapter" data-o="7053" id="eid13791">
+        <h2 class="title" data-o="7053" id="eid13792" data-out="14.3.1">Implementing Run Length Coding</h2>
+        <div class="para" data-o="7083" id="eid13793">We can experiment with run length encoding by writing a simple function to implement it. We shall assume our data is binary, and in one single column. The first step is to find the places at which the data changes values, starting with the value 1, indicating that the first value is indeed different from the previous (non-existent!) value. We also need to append a 1 at the end, so that we can find the length of the final run. This can be done very easily by comparing the data with a shifted version of itself:</div>
+        <figure class="figure" data-o="7597" id="eid13794" data-dashid="ufig14_8">
+          <img width="760" height="88" class="graphic" src="./9781482247350_1478.jpg" data-o="7597" id="eid13795" />
+        </figure>
+        <div class="para" data-o="7598" id="eid13796">In Python:</div>
+        <figure class="figure" data-o="7608" id="eid13797" data-dashid="ufig14_9">
+          <img width="760" height="87" class="graphic" src="./9781482247350_1479.jpg" data-o="7608" id="eid13798" />
+        </figure>
+        <div class="para" data-o="7609" id="eid13799">Now the run-length code is simply the difference between the indices of the ones:</div>
+        <figure class="figure" data-o="7690" id="eid13800" data-dashid="ufig14_10">
+          <img width="760" height="192" class="graphic" src="./9781482247350_1480.jpg" data-o="7690" id="eid13801" />
+        </figure>
+        <div class="para" data-o="7691" id="eid13802">The only problem here is the first element, which should be changed to zero if the initial value of <span class="mono" data-o="7791" id="eid13803">data</span> is 1, and removed if the first element of data is zero:</div>
+        <figure class="figure" data-o="7851" id="eid13804" data-dashid="ufig14_11">
+          <img width="760" height="234" class="graphic" src="./9781482247350_1481.jpg" data-o="7851" id="eid13805" />
+        </figure>
+        <div class="para" data-o="7852" id="eid13806">For example, if <span class="mono" data-o="7868" id="eid13807">data</span> was the list</div>
+        <figure class="figure" data-o="7885" id="eid13808" data-dashid="ufig14_12">
+          <img width="251" height="17" class="graphic" src="./9781482247350_1482.jpg" data-o="7885" id="eid13809" />
+        </figure>
+        <div class="para" data-o="7886" id="eid13810">then the value of <span class="mono" data-o="7904" id="eid13811">changes</span> would consist of</div>
+        <figure class="figure" data-o="7928" id="eid13812" data-dashid="ufig14_13">
+          <img width="251" height="17" class="graphic" src="./9781482247350_1483.jpg" data-o="7928" id="eid13813" />
+        </figure>
+        <div class="para" data-o="7929" id="eid13814">giving the values of <span class="mono" data-o="7950" id="eid13815">diffs</span> as</div>
+        <span id="page_break_inline_409" data-previous="408" class="vbk-epub-pagebreak" epub:type="pagebreak" title="409"> </span>
+        <div class="para" data-o="7958" id="eid13816">and the initial <span class="mono" data-o="7974" id="eid13817">rle</span> as</div>
+        <figure class="figure" data-o="7980" id="eid13818" data-dashid="ufig14_14">
+          <img width="91" height="17" class="graphic" src="./9781482247350_1484.jpg" data-o="7980" id="eid13819" />
+        </figure>
+        <div class="para" data-o="7981" id="eid13820">Since the first value of <span class="mono" data-o="8006" id="eid13821">data</span> is 1, then the first value <span class="mono" data-o="8038" id="eid13822">−9</span> is changed to <span class="mono" data-o="8055" id="eid13823">0</span> giving the run-length code</div>
+        <figure class="figure" data-o="8083" id="eid13824" data-dashid="ufig14_15">
+          <img width="102" height="17" class="graphic" src="./9781482247350_1485.jpg" data-o="8083" id="eid13825" />
+        </figure>
+        <div class="para" data-o="8084" id="eid13826">If we experiment with a binary image, for example <span class="mono" data-o="8134" id="eid13827">circles2.png</span> then:</div>
+        <figure class="figure" data-o="8152" id="eid13828" data-dashid="ufig14_16">
+          <img width="91" height="17" class="graphic" src="./9781482247350_1486.jpg" data-o="8152" id="eid13829" />
+        </figure>
+        <div class="para" data-o="8153" id="eid13830">Repeating the above commands for this new <span class="mono" data-o="8195" id="eid13831">data</span>, and producing a new <span class="mono" data-o="8221" id="eid13832">rle</span>, then by using <span class="mono" data-o="8240" id="eid13833">whos rle</span> it can be found that <span class="mono" data-o="8270" id="eid13834">rle</span> consists of 1207 values of type <span class="mono" data-o="8306" id="eid13835">double</span>, taking up <span class="mono" data-o="8324" id="eid13836">9656</span> bytes of storage. If we change the data type to <span class="mono" data-o="8377" id="eid13837">uint16</span> the number of bytes decreases to 2414:</div>
+        <figure class="figure" data-o="8422" id="eid13838" data-dashid="ufig14_17">
+          <img width="760" height="214" class="graphic" src="./9781482247350_1487.jpg" data-o="8422" id="eid13839" />
+        </figure>
+        <div class="para" data-o="8423" id="eid13840">(Note that the outputs for MATLAB and Octave from <span class="mono" data-o="8473" id="eid13841">whos</span> are slightly different). In this case, RLE provides a remarkable compression rate.</div>
+        <div class="para" data-o="8560" id="eid13842">In Python:</div>
+        <figure class="figure" data-o="8570" id="eid13843" data-dashid="ufig14_18">
+          <img width="760" height="151" class="graphic" src="./9781482247350_1488.jpg" data-o="8570" id="eid13844" />
+        </figure>
+        <div class="para" data-o="8571" id="eid13845">Again the above commands can be applied, to produce <span class="mono" data-o="8623" id="eid13846">rle</span>.</div>
+        <span id="page_break_inline_410" data-previous="409" class="vbk-epub-pagebreak" epub:type="pagebreak" title="410"> </span>
+      </section>
+    </section>
+    <section class="level" epub:type="subchapter" data-o="8627" id="eid13847" data-dashid="lvl14_4">
+      <h2 class="title" data-o="8627" id="eid13848" data-out="14.4"><span class="label" data-o="8627" id="eid13849"><span class="label-inner">14.4 </span></span>Dictionary Coding: LZW Compression</h2>
+      <div class="para" data-o="8666" id="eid13850">The principle idea behind all dictionary compression schemes (of which there are a great many) is that there is a dictionary of symbols and of groups of symbols. As the algorithm works its way through the input data, when it encounters a group of symbols not in the dictionary, it adds that group—with an appropriate code—to the dictionary. This means that when that group of symbols is encountered again, there is a dictionary entry for it.</div>
+      <div class="para" data-o="9107" id="eid13851">The initial scheme was published in 1978 by Abraham Lempel and Jacob Ziv (and is known as LZ78); the LZW scheme is a variant devised by Terry Welch in 1984. It has been a hugely popular scheme because of its simplicity. It achieved some notoriety by being used in the GIF image format; the algorithm was thus patented to the Unisys Corporation, who attempted to enforce its licensing. The commercial aspect of the GIF format and its algorithms was one of the main drivers behind the development of a patent-free alternative: the result was the PNG format. The patent however expired in 2003, and the algorithm can now be used freely and without restriction.</div>
+      <div class="para" data-o="9764" id="eid13852">The LZW algorithm is best explained by an example. To keep matters as simple as possible, data will consist only of capital letters, and so the test phrase “A banana bandanna ban” will appear as “ABANANABANDANNABAN”. The initial dictionary consists of the 26 letters of the alphabet, and their codes 0 to 25:</div>
+      <div class="para" style="text-align:center;" data-o="10072" id="eid13853">
+        <span class="inline" data-o="10072" id="eid13854">
+          <img width="359" height="32" class="inlinegraphic" src="./9781482247350_1489.jpg" data-o="10072" id="eid13855" />
+        </span>
+      </div>
+      <div class="para" data-o="10073" id="eid13856">The algorithm keeps current letters from the data in a buffer, which is initially empty. At each step, the next letter from the data is added to the buffer. When a group of letters is reached that is <i data-o="10273" id="eid13857">not</i> in the dictionary, then the buffer except for the most recent addition is added to the dictionary with the next unused code value, and the buffer is changed to hold only the last letter.</div>
+      <div class="para" data-o="10463" id="eid13858">For example, suppose we collect these letters one by one into the buffer:</div>
+      <figure class="figure" data-o="10536" id="eid13859" data-dashid="ufig14_19">
+        <img width="174" height="152" class="graphic" src="./9781482247350_1490.jpg" data-o="10536" id="eid13860" />
+      </figure>
+      <div class="para" data-o="10537" id="eid13861">Suppose that the first three groups of letters <span class="mono" data-o="10584" id="eid13862">A, AN, ANN</span> were already in the dictionary, but the last group <span class="mono" data-o="10646" id="eid13863">ANNA</span> was not. Then the output would be the code for <span class="mono" data-o="10698" id="eid13864">ANN</span>, and the buffer would be emptied except for the last letter <span class="mono" data-o="10762" id="eid13865">A</span>.</div>
+      <div class="para" data-o="10764" id="eid13866">The uncompressed text, as codes is:</div>
+      <figure class="figure" data-o="10799" id="eid13867" data-dashid="ufig14_20">
+        <img width="760" height="17" class="graphic" src="./9781482247350_1491.jpg" data-o="10799" id="eid13868" />
+      </figure>
+      <div class="para" data-o="10800" id="eid13869">Here is the algorithm applied to the test text:</div>
+      <span id="page_break_inline_411" data-previous="410" class="vbk-epub-pagebreak" epub:type="pagebreak" title="411"> </span>
+      <div class="table" data-o="10847" id="eid13870" data-dashid="utbl411_1">
+        <img width="662" height="800" class="graphic" src="./9781482247350_1492.jpg" aria-label=" A DA no DA = 33 03 Output the code for D, reduce the buffer to A N AN yes Do nothing at this stage N ANN no ANN = 34 28 Output the code for AN, reduce the buffer to N A A yes Do nothing at this stage B NAB no NAB = 35 29 Output the code for NA, reduce the buffer to B A BA yes Do nothing at this stage N BAN no BAN = 36 27 Output the code for BA, reduce the buffer to N # N# no 12 End of data reached, so stop " data-o="10847" id="eid13871" />
+        <div style="display: none;" class="textualrep" data-o="10848" id="eid13872"> A DA no DA = 33 03 Output the code for D, reduce the buffer to A N AN yes Do nothing at this stage N ANN no ANN = 34 28 Output the code for AN, reduce the buffer to N A A yes Do nothing at this stage B NAB no NAB = 35 29 Output the code for NA, reduce the buffer to B A BA yes Do nothing at this stage N BAN no BAN = 36 27 Output the code for BA, reduce the buffer to N # N# no 12 End of data reached, so stop </div>
+      </div>
+      <div class="para" data-o="10848" id="eid13873">The compressed output, as code, would be</div>
+      <figure class="figure" data-o="10888" id="eid13874" data-dashid="ufig14_21">
+        <img width="521" height="18" class="graphic" src="./9781482247350_1493.jpg" data-o="10888" id="eid13875" />
+      </figure>
+      <div class="para" data-o="10889" id="eid13876">So the algorithm has reduced 18 code values to just 11. Clearly this example is highly contrived to have good results for a small input; but, in fact, for large data we could expect in most cases to achieve a reasonable compression rate.</div>
+      <div class="para" data-o="11126" id="eid13877">One of the many elegant aspects of LZW compression is that it is self-uncompressing: given the initial dictionary, the compressed output contains all the information needed to build up the dictionary. That is, there is no need to include the extra dictionary values with <span id="page_break_inline_412" data-previous="411" class="vbk-epub-pagebreak" epub:type="pagebreak" title="412"> </span>the code. Basically, we do exactly the same as for compression: add the current letter to the buffer, check whether it's in the dictionary. Sometimes the output code might involve several symbols, so we treat each one separately:</div>
+      <div class="table" data-o="11626" id="eid13878" data-dashid="utbl412_1">
+        <img width="760" height="471" class="graphic" src="./9781482247350_1494.jpg" aria-label=" Code Data Buffer In dict? New dict and code Comments 00 A A yes 01 B AB no AB = 26 Reduce buffer to B 00 A BA no BA = 27 Reduce buffer to A 12 N AN no AN = 28 Reduce buffer to N 28 A NA no NA = 29 Reduce buffer to A N AN yes 26 A ANA no ANA = 30 Reduce buffer to A B AB yes 28 A ABA no ABA = 31 Reduce buffer to A N AN yes 03 D AND no AND = 32 Reduce buffer to D 28 A DA no DA = 33 Reduce buffer to A N AN yes 29 N ANN no ANN = 34 Reduce buffer to N A NA yes 27 B NAB no NAB = 35 Reduce buffer to B A BA yes 12 N Last code value so stop " data-o="11626" id="eid13879" />
+        <div style="display: none;" class="textualrep" data-o="11627" id="eid13880"> Code Data Buffer In dict? New dict and code Comments 00 A A yes 01 B AB no AB = 26 Reduce buffer to B 00 A BA no BA = 27 Reduce buffer to A 12 N AN no AN = 28 Reduce buffer to N 28 A NA no NA = 29 Reduce buffer to A N AN yes 26 A ANA no ANA = 30 Reduce buffer to A B AB yes 28 A ABA no ABA = 31 Reduce buffer to A N AN yes 03 D AND no AND = 32 Reduce buffer to D 28 A DA no DA = 33 Reduce buffer to A N AN yes 29 N ANN no ANN = 34 Reduce buffer to N A NA yes 27 B NAB no NAB = 35 Reduce buffer to B A BA yes 12 N Last code value so stop </div>
+      </div>
+      <div class="para" data-o="11627" id="eid13881">The original uncompressed data can be seen in the second column.</div>
+      <div class="para" data-o="11691" id="eid13882">Programs for LZW compression are given at the end of the chapter. For example, suppose the programs are applied to the resized version of the cameraman image:</div>
+      <figure class="figure" data-o="11849" id="eid13883" data-dashid="ufig14_22">
+        <img width="760" height="88" class="graphic" src="./9781482247350_1495.jpg" data-o="11849" id="eid13884" />
+      </figure>
+      <div class="para" data-o="11850" id="eid13885">To compare the total number of bits in the image and the LZW code, note that the number of bits required for an integer <i data-o="11970" id="eid13886">n</i> is given by</div>
+      <div class="para" style="text-align:center;" data-o="11983" id="eid13887">
+        <span class="inline" data-o="11983" id="eid13888">
+          <img width="60" height="16" class="inlinegraphic" src="./9781482247350_1496.jpg" data-o="11983" id="eid13889" />
+        </span>
+      </div>
+      <div class="para" data-o="11984" id="eid13890">This is the <i data-o="11996" id="eid13891">ceiling</i> (next integer above) of the logarithm of <i data-o="12045" id="eid13892">n</i> to base 2. So, the total number of bits required for all the code values can be computed as:</div>
+      <figure class="figure" data-o="12139" id="eid13893" data-dashid="ufig14_23">
+        <img width="760" height="88" class="graphic" src="./9781482247350_1497.jpg" data-o="12139" id="eid13894" />
+      </figure>
+      <div class="para" data-o="12140" id="eid13895">Then we can calculate the total number of bits of all the pixels in <span class="mono" data-o="12208" id="eid13896">c</span>, first with 8 bits per pixel, and next with the number of bits per integer value:</div>
+      <figure class="figure" data-o="12291" id="eid13897" data-dashid="ufig14_24">
+        <img width="760" height="151" class="graphic" src="./9781482247350_1498.jpg" data-o="12291" id="eid13898" />
+      </figure>
+      <span id="page_break_inline_413" data-previous="412" class="vbk-epub-pagebreak" epub:type="pagebreak" title="413"> </span>
+      <div class="para" data-o="12292" id="eid13899">In Python, the values are slightly different, owing to the differences in the resizing algorithm and the conversion to data type <span class="mono" data-o="12421" id="eid13900">uint8</span>:</div>
+      <figure class="figure" data-o="12427" id="eid13901" data-dashid="ufig14_25">
+        <img width="760" height="129" class="graphic" src="./9781482247350_1499.jpg" data-o="12427" id="eid13902" />
+      </figure>
+      <div class="para" data-o="12428" id="eid13903">Total bits in the image:</div>
+      <figure class="figure" data-o="12452" id="eid13904" data-dashid="ufig14_26">
+        <img width="760" height="87" class="graphic" src="./9781482247350_1500.jpg" data-o="12452" id="eid13905" />
+      </figure>
+      <div class="para" data-o="12453" id="eid13906">There is clearly some compression.</div>
+      <div class="para" data-o="12487" id="eid13907">The version of LZW discussed here is the simplest version; there are variants that are faster or with more optimal compression rates. For more detail, the texts by Salomon [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17033" data-o="12660" id="eid13908" style="overflow-wrap: break-word;">41</a>, <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17036" data-o="12664" id="eid13909" style="overflow-wrap: break-word;">42</a>] or by Sayood [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17039" data-o="12682" id="eid13910" style="overflow-wrap: break-word;">43</a>] are excellent references and introductions not only to LZW but also to other compression algorithms.</div>
+    </section>
+    <section class="level" epub:type="subchapter" data-o="12786" id="eid13911" data-dashid="lvl14_5">
+      <h2 class="title" data-o="12786" id="eid13912" data-out="14.5"><span class="label" data-o="12786" id="eid13913"><span class="label-inner">14.5 </span></span>The JPEG Algorithm</h2>
+      <div class="para" data-o="12809" id="eid13914">Lossy compression trades some acceptable data loss for greater rates of compression. Of the many compression methods available, the algorithm developed by the Joint Photographic Experts Group (JPEG) has become one of the most popular. It uses <i data-o="13052" id="eid13915">transform coding</i>, where the coding is done not on the pixel values themselves, but on a transform.</div>
+      <div class="para" data-o="13150" id="eid13916">The heart of this algorithm is the <i data-o="13185" id="eid13917">discrete cosine transform</i> (DCT), which is defined similarly to the Fourier transform. Although it can be applied to an array of any size, in the JPEG algorithm it is applied only to 8 × 8 blocks. If <i data-o="13384" id="eid13918">f</i>(<i data-o="13386" id="eid13919">j, k</i>) is one such block, then the forward (two-dimensional) DCT is defined as:</div>
+      <div class="para" style="text-align:center;" data-o="13464" id="eid13920">
+        <span class="inline" data-o="13464" id="eid13921">
+          <img width="513" height="50" class="inlinegraphic" src="./9781482247350_1501.jpg" data-o="13464" id="eid13922" />
+        </span>
+      </div>
+      <div class="para" data-o="13465" id="eid13923">and the corresponding inverse DCT as</div>
+      <div class="para" style="text-align:center;" data-o="13501" id="eid13924">
+        <span class="inline" data-o="13501" id="eid13925">
+          <img width="495" height="48" class="inlinegraphic" src="./9781482247350_1502.jpg" data-o="13501" id="eid13926" />
+        </span>
+      </div>
+      <div class="para" data-o="13502" id="eid13927">where <i data-o="13508" id="eid13928">C</i>(<i data-o="13510" id="eid13929">w</i>) is defined as</div>
+      <div class="para" style="text-align:center;" data-o="13526" id="eid13930">
+        <span class="inline" data-o="13526" id="eid13931">
+          <img width="190" height="41" class="inlinegraphic" src="./9781482247350_1503.jpg" data-o="13526" id="eid13932" />
+        </span>
+      </div>
+      <div class="para" data-o="13527" id="eid13933">The DCT has a number of properties that make it particularly suitable for compression:</div>
+      <div class="list" data-o="13613" id="eid13934">
+        <ul>
+          <li data-o="13613" id="eid13935">
+            <span class="label" data-o="13613" id="eid13936">
+              <span class="label-inner">1.</span>
+            </span>
+            <span class="item" data-o="13615" id="eid13937">It is real-valued, so there is no need to manipulate complex numbers</span>
+          </li>
+          <li data-o="13683" id="eid13938">
+            <span class="label" data-o="13683" id="eid13939">
+              <span class="label-inner">2.</span>
+            </span>
+            <span class="item" data-o="13685" id="eid13940">It has a high information packing ability, in that it packs large amounts of information into a small number of coefficients</span>
+            <span id="page_break_inline_414" data-previous="413" class="vbk-epub-pagebreak" epub:type="pagebreak" title="414"> </span>
+          </li>
+          <li data-o="13809" id="eid13941">
+            <span class="label" data-o="13809" id="eid13942">
+              <span class="label-inner">3.</span>
+            </span>
+            <span class="item" data-o="13811" id="eid13943">It can be implemented very efficiently in hardware</span>
+          </li>
+          <li data-o="13861" id="eid13944">
+            <span class="label" data-o="13861" id="eid13945">
+              <span class="label-inner">4.</span>
+            </span>
+            <span class="item" data-o="13863" id="eid13946">Like the FFT, there is a “fast” version of the transform which maximizes efficiency</span>
+          </li>
+          <li data-o="13946" id="eid13947">
+            <span class="label" data-o="13946" id="eid13948">
+              <span class="label-inner">5.</span>
+            </span>
+            <span class="item" data-o="13948" id="eid13949">The basis values are independent of the data [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid16949" data-o="13994" id="eid13950" style="overflow-wrap: break-word;">13</a>]</span>
+          </li>
+        </ul>
+      </div>
+      <div class="para" data-o="13997" id="eid13951">Like the 2-dimensional FFT, the 2-dimensional DCT (given above), is separable, and so can be calculated by a sequence of 1-dimensional DCTs; first we apply the 1-D DCT to the rows, then the 1-D DCT to the columns of the result.</div>
+      <div class="para" data-o="14224" id="eid13952">To see an example of the information packing capabilities, we consider the simple linear sequence given by</div>
+      <figure class="figure" data-o="14330" id="eid13953" data-dashid="ufig14_27">
+        <img width="760" height="151" class="graphic" src="./9781482247350_1504.jpg" data-o="14330" id="eid13954" />
+      </figure>
+      <div class="para" data-o="14331" id="eid13955">We shall apply both the FFT and DCT to this sequence, remove half the result, and invert the remainder. First the FFT:</div>
+      <figure class="figure" data-o="14449" id="eid13956" data-dashid="ufig14_28">
+        <img width="760" height="194" class="graphic" src="./9781482247350_1505.jpg" data-o="14449" id="eid13957" />
+      </figure>
+      <div class="para" data-o="14450" id="eid13958">Now the DCT (using the <span class="mono" data-o="14473" id="eid13959">dct</span> and <span class="mono" data-o="14481" id="eid13960">idct</span> functions):</div>
+      <figure class="figure" data-o="14497" id="eid13961" data-dashid="ufig14_29">
+        <img width="760" height="194" class="graphic" src="./9781482247350_1506.jpg" data-o="14497" id="eid13962" />
+      </figure>
+      <div class="para" data-o="14498" id="eid13963">In Python, this can be handled by first importing a DCT function:</div>
+      <figure class="figure" data-o="14563" id="eid13964" data-dashid="ufig14_30">
+        <img width="760" height="171" class="graphic" src="./9781482247350_1507.jpg" data-o="14563" id="eid13965" />
+      </figure>
+      <div class="para" data-o="14564" id="eid13966">Python's default is not to perform automatically scaling with the DCT, so we need to include the parameter <span class="mono" data-o="14671" id="eid13967">norm='ortho'</span> to ensure that the appropriate scaling takes place.</div>
+      <div class="para" data-o="14735" id="eid13968">Notice how much closer the DCT result is to the original, in spite of the loss of information from the transform. This example is illustrated in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid13970" data-o="14880" id="eid13969" style="overflow-wrap: break-word;">Figure 14.3</a>.</div>
+      <span id="page_break_inline_415" data-previous="414" class="vbk-epub-pagebreak" epub:type="pagebreak" title="415"> </span>
+      <figure class="figure" data-o="14892" id="eid13970" data-dashid="fig14_3">
+        <img width="460" height="604" class="graphic" src="./9781482247350_1508.jpg" data-o="14938" id="eid13973" />
+        <figcaption>
+          <h2 class="title" data-o="14892" id="eid13971"><span class="label" data-o="14892" id="eid13972"><span class="label-inner">Figure 14.3: </span></span>Comparison of the FFT and the DCT</h2>
+        </figcaption>
+      </figure>
+      <div class="para" data-o="14939" id="eid13974">The JPEG baseline compression scheme is applied as follows:</div>
+      <div class="list" data-o="14998" id="eid13975">
+        <ul>
+          <li data-o="14998" id="eid13976">
+            <span class="label" data-o="14998" id="eid13977">
+              <span class="label-inner">1.</span>
+            </span>
+            <span class="item" data-o="15000" id="eid13978">The image is divided up into 8 × 8 blocks; each block is transformed and compressed separately.</span>
+          </li>
+          <li data-o="15095" id="eid13979">
+            <span class="label" data-o="15095" id="eid13980">
+              <span class="label-inner">2.</span>
+            </span>
+            <span class="item" data-o="15097" id="eid13981">For a given block, the values are “shifted” by subtracting 128 each value.</span>
+          </li>
+          <li data-o="15171" id="eid13982">
+            <span class="label" data-o="15171" id="eid13983">
+              <span class="label-inner">3.</span>
+            </span>
+            <span class="item" data-o="15173" id="eid13984">The DCT is applied to this shifted block.</span>
+          </li>
+          <li data-o="15214" id="eid13985">
+            <span class="label" data-o="15214" id="eid13986">
+              <span class="label-inner">4.</span>
+            </span>
+            <span class="item" data-o="15216" id="eid13987">The DCT values are “normalized” by dividing through by a “normalization matrix” <i data-o="15296" id="eid13988">Q</i>.</span>
+            <div class="item" data-o="15298" id="eid13989">It is this normalization that provides the compression, by making most of the elements of the block zero.</div>
+          </li>
+          <li data-o="15403" id="eid13990">
+            <span class="label" data-o="15403" id="eid13991">
+              <span class="label-inner">5.</span>
+            </span>
+            <span class="item" data-o="15405" id="eid13992">This matrix is formed into a vector by reading off all non-zero values from the top left in a zig-zag fashion as shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14009" data-o="15527" id="eid13993" style="overflow-wrap: break-word;">Figure 14.4</a>.</span>
+          </li>
+          <li data-o="15539" id="eid13994">
+            <span class="label" data-o="15539" id="eid13995">
+              <span class="label-inner">6.</span>
+            </span>
+            <span class="item" data-o="15541" id="eid13996">The first coefficients of each vector, which will be the largest elements in each vector, and which are known as the <i data-o="15658" id="eid13997">DC coefficients</i>, are encoded by listing the <i data-o="15702" id="eid13998">difference</i> between each value and the values from the previous block. This helps keep all values (except for the first) small.</span>
+          </li>
+          <li data-o="15828" id="eid13999">
+            <span class="label" data-o="15828" id="eid14000">
+              <span class="label-inner">7.</span>
+            </span>
+            <span class="item" data-o="15830" id="eid14001">These are then compressed using run length encoding.</span>
+          </li>
+          <li data-o="15882" id="eid14002">
+            <span class="label" data-o="15882" id="eid14003">
+              <span class="label-inner">8.</span>
+            </span>
+            <span class="item" data-o="15884" id="eid14004">All other values (known as the <i data-o="15915" id="eid14005">AC coefficients</i>) are compressed using a Huffman coding.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="para" data-o="15970" id="eid14006">The amount of lossy compression can be changed by scaling the normalization matrix <i data-o="16053" id="eid14007">Q</i> in Step 4 above.</div>
+      <div class="para" data-o="16071" id="eid14008">To decompress, the above steps are applied in reverse; the Huffman encoding and run length encoding can be decoded with no loss of information. Having done that, then:</div>
+      <span id="page_break_inline_416" data-previous="415" class="vbk-epub-pagebreak" epub:type="pagebreak" title="416"> </span>
+      <figure class="figure" data-o="16238" id="eid14009" data-dashid="fig14_4">
+        <img width="442" height="442" class="graphic" src="./9781482247350_1509.jpg" data-o="16288" id="eid14012" />
+        <figcaption>
+          <h2 class="title" data-o="16238" id="eid14010"><span class="label" data-o="16238" id="eid14011"><span class="label-inner">Figure 14.4: </span></span>Reading the elements from a DCT block</h2>
+        </figcaption>
+      </figure>
+      <div class="list" data-o="16289" id="eid14013">
+        <ul>
+          <li data-o="16289" id="eid14014">
+            <span class="label" data-o="16289" id="eid14015">
+              <span class="label-inner">1.</span>
+            </span>
+            <span class="item" data-o="16291" id="eid14016">The vector is read back into an 8 × 8 matrix.</span>
+          </li>
+          <li data-o="16336" id="eid14017">
+            <span class="label" data-o="16336" id="eid14018">
+              <span class="label-inner">2.</span>
+            </span>
+            <span class="item" data-o="16338" id="eid14019">The matrix is multiplied by the normalization matrix.</span>
+          </li>
+          <li data-o="16391" id="eid14020">
+            <span class="label" data-o="16391" id="eid14021">
+              <span class="label-inner">3.</span>
+            </span>
+            <span class="item" data-o="16393" id="eid14022">The inverse DCT is applied to the result.</span>
+          </li>
+          <li data-o="16434" id="eid14023">
+            <span class="label" data-o="16434" id="eid14024">
+              <span class="label-inner">4.</span>
+            </span>
+            <span class="item" data-o="16436" id="eid14025">The result is shifted back by 128 to obtain the original image block.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="para" data-o="16505" id="eid14026">The normalization matrix, which has been used by the JPEG group, is</div>
+      <figure class="figure" data-o="16572" id="eid14027" data-dashid="ufig14_31">
+        <img width="293" height="159" class="graphic" src="./9781482247350_1510.jpg" data-o="16572" id="eid14028" />
+      </figure>
+      <div class="para" data-o="16573" id="eid14029">We can experiment with the DCT and quantization using standard functions, and with an 8 × 8 block from an image. First, define the block and subtract 128 from it:</div>
+      <figure class="figure" data-o="16735" id="eid14030" data-dashid="ufig14_32">
+        <img width="760" height="295" class="graphic" src="./9781482247350_1511.jpg" data-o="16735" id="eid14031" />
+      </figure>
+      <div class="para" data-o="16736" id="eid14032">The block of values thus produced is</div>
+      <span id="page_break_inline_417" data-previous="416" class="vbk-epub-pagebreak" epub:type="pagebreak" title="417"> </span>
+      <figure class="figure" data-o="16772" id="eid14033" data-dashid="ufig14_33">
+        <img width="600" height="230" class="graphic" src="./9781482247350_1512.jpg" data-o="16772" id="eid14034" />
+      </figure>
+      <div class="para" data-o="16773" id="eid14035">Now we apply the DCT, and divide by the normalization matrix:</div>
+      <figure class="figure" data-o="16834" id="eid14036" data-dashid="ufig14_34">
+        <img width="760" height="130" class="graphic" src="./9781482247350_1513.jpg" data-o="16834" id="eid14037" />
+      </figure>
+      <div class="para" data-o="16835" id="eid14038">Note that Python does not have a <span class="mono" data-o="16868" id="eid14039">dct2</span> function, but it is easy to write one, using the separability of the transform:</div>
+      <figure class="figure" data-o="16952" id="eid14040" data-dashid="ufig14_35">
+        <img width="760" height="192" class="graphic" src="./9781482247350_1514.jpg" data-o="16952" id="eid14041" />
+      </figure>
+      <div class="para" data-o="16953" id="eid14042">The value of this final array is</div>
+      <figure class="figure" data-o="16985" id="eid14043" data-dashid="ufig14_36">
+        <img width="600" height="230" class="graphic" src="./9781482247350_1515.jpg" data-o="16985" id="eid14044" />
+      </figure>
+      <div class="para" data-o="16986" id="eid14045">At this stage we have turned our block from above into a block containing mostly zeros. If we were to output a vector from this block, it would be:</div>
+      <figure class="figure" data-o="17133" id="eid14046" data-dashid="ufig14_37">
+        <img width="760" height="17" class="graphic" src="./9781482247350_1516.jpg" data-o="17133" id="eid14047" />
+      </figure>
+      <div class="para" data-o="17134" id="eid14048">where <span class="mono" data-o="17140" id="eid14049">EOB</span> signifies the end of the block. So, by this stage we have reduced an 8 × 8 block to a vector of length 21, containing only small values.</div>
+      <div class="para" data-o="17280" id="eid14050">To uncompress, we take the vector and reorder its elements into the matrix bq above. The steps to recover the block are first multiplying by the normalization matrix, applying the inverse DCT, and finally adding 128:</div>
+      <span id="page_break_inline_418" data-previous="417" class="vbk-epub-pagebreak" epub:type="pagebreak" title="418"> </span>
+      <figure class="figure" data-o="17496" id="eid14051" data-dashid="ufig14_38">
+        <img width="760" height="109" class="graphic" src="./9781482247350_1517.jpg" data-o="17496" id="eid14052" />
+      </figure>
+      <div class="para" data-o="17497" id="eid14053">In Python, as before, we have to provide a function for the inverse DCT:</div>
+      <figure class="figure" data-o="17569" id="eid14054" data-dashid="ufig14_39">
+        <img width="760" height="171" class="graphic" src="./9781482247350_1518.jpg" data-o="17569" id="eid14055" />
+      </figure>
+      <div class="para" data-o="17570" id="eid14056">The value of <span class="mono" data-o="17583" id="eid14057">block2</span> is:</div>
+      <figure class="figure" data-o="17593" id="eid14058" data-dashid="ufig14_40">
+        <img width="601" height="230" class="graphic" src="./9781482247350_1519.jpg" data-o="17593" id="eid14059" />
+      </figure>
+      <div class="para" data-o="17594" id="eid14060">It can be seen that these values are very close, if not quite exactly the same, as the values in the original block. The differences between original and reconstructed values are:</div>
+      <figure class="figure" data-o="17773" id="eid14061" data-dashid="ufig14_41">
+        <img width="587" height="230" class="graphic" src="./9781482247350_1520.jpg" data-o="17773" id="eid14062" />
+      </figure>
+      <div class="para" data-o="17774" id="eid14063">The algorithm works best on regions of low frequency; in such cases, the original block can be reconstructed with only very small errors.</div>
+      <div class="para" data-o="17911" id="eid14064">We can experiment with JPEG compression by experimenting with scaling the normalization matrix. In MATLAB or Octave, we can create anonymous functions:</div>
+      <figure class="figure" data-o="18062" id="eid14065" data-dashid="ufig14_42">
+        <img width="760" height="88" class="graphic" src="./9781482247350_1521.jpg" data-o="18062" id="eid14066" />
+      </figure>
+      <div class="para" data-o="18063" id="eid14067">and in Python we can create ordinary functions:</div>
+      <span id="page_break_inline_419" data-previous="418" class="vbk-epub-pagebreak" epub:type="pagebreak" title="419"> </span>
+      <figure class="figure" data-o="18110" id="eid14068" data-dashid="ufig14_43">
+        <img width="760" height="192" class="graphic" src="./9781482247350_1522.jpg" data-o="18110" id="eid14069" />
+      </figure>
+      <div class="para" data-o="18111" id="eid14070">The functions in MATLAB/Octave can be applied to an image with the <span class="mono" data-o="18178" id="eid14071">blockproc</span> function. Recall that this applies a function to each block in the image; the size of the blocks being given as parameters to <span class="mono" data-o="18314" id="eid14072">blockproc</span>.</div>
+      <div class="para" data-o="18324" id="eid14073">Applied to the matrix of the caribou image:</div>
+      <figure class="figure" data-o="18367" id="eid14074" data-dashid="ufig14_44">
+        <img width="760" height="130" class="graphic" src="./9781482247350_1523.jpg" data-o="18367" id="eid14075" />
+      </figure>
+      <div class="para" data-o="18368" id="eid14076">Python does not have a <span class="mono" data-o="18391" id="eid14077">blockproc</span> equivalent, but in fact we can use Python's programming facility to do the job just as well:</div>
+      <figure class="figure" data-o="18493" id="eid14078" data-dashid="ufig14_45">
+        <img width="760" height="235" class="graphic" src="./9781482247350_1524.jpg" data-o="18493" id="eid14079" />
+      </figure>
+      <div class="para" data-o="18494" id="eid14080">So we have applied the compression scheme to each 8 × 8 block of the image, up to the point of dividing by the quantization matrix and round off. The point of the second command is to show how much information has been lost at this stage. The original image contained 65,536 different items of information (the pixel values); each one between 0 and 128. But now we have only 65,536 − 51,940 = 13,596 items of information, and their maxima and minima are:</div>
+      <figure class="figure" data-o="18948" id="eid14081" data-dashid="ufig14_46">
+        <img width="760" height="109" class="graphic" src="./9781482247350_1525.jpg" data-o="18948" id="eid14082" />
+      </figure>
+      <div class="para" data-o="18949" id="eid14083">and in Python:</div>
+      <figure class="figure" data-o="18963" id="eid14084" data-dashid="ufig14_47">
+        <img width="760" height="87" class="graphic" src="./9781482247350_1526.jpg" data-o="18963" id="eid14085" />
+      </figure>
+      <div class="para" data-o="18964" id="eid14086">So, the information is not only far less in number, but also in range. Now we can go backward:</div>
+      <span id="page_break_inline_420" data-previous="419" class="vbk-epub-pagebreak" epub:type="pagebreak" title="420"> </span>
+      <figure class="figure" data-o="19058" id="eid14087" data-dashid="ufig14_48">
+        <img width="760" height="88" class="graphic" src="./9781482247350_1527.jpg" data-o="19058" id="eid14088" />
+      </figure>
+      <div class="para" data-o="19059" id="eid14089">or</div>
+      <figure class="figure" data-o="19061" id="eid14090" data-dashid="ufig14_49">
+        <img width="760" height="151" class="graphic" src="./9781482247350_1528.jpg" data-o="19061" id="eid14091" />
+      </figure>
+      <div class="para" data-o="19062" id="eid14092">The original image and result <span class="mono" data-o="19092" id="eid14093">c2</span> are shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14095" data-o="19108" id="eid14094" style="overflow-wrap: break-word;">Figure 14.5</a>. There is no apparent difference between the images—they look identical. However, they are not identical:</div>
+      <figure class="figure" data-o="19225" id="eid14095" data-dashid="fig14_5">
+        <img width="698" height="320" class="graphic" src="./9781482247350_1529.jpg" data-o="19298" id="eid14098" />
+        <figcaption>
+          <h2 class="title" data-o="19225" id="eid14096"><span class="label" data-o="19225" id="eid14097"><span class="label-inner">Figure 14.5: </span></span>An image before and after JPEG compression and decompression</h2>
+        </figcaption>
+      </figure>
+      <figure class="figure" data-o="19299" id="eid14099" data-dashid="ufig14_50">
+        <img width="760" height="151" class="graphic" src="./9781482247350_1530.jpg" data-o="19299" id="eid14100" />
+      </figure>
+      <div class="para" data-o="19300" id="eid14101">or</div>
+      <figure class="figure" data-o="19302" id="eid14102" data-dashid="ufig14_51">
+        <img width="760" height="87" class="graphic" src="./9781482247350_1531.jpg" data-o="19302" id="eid14103" />
+      </figure>
+      <div class="para" data-o="19303" id="eid14104">and we can see the difference (scaled for viewing):</div>
+      <figure class="figure" data-o="19354" id="eid14105" data-dashid="ufig14_52">
+        <img width="760" height="67" class="graphic" src="./9781482247350_1532.jpg" data-o="19354" id="eid14106" />
+      </figure>
+      <div class="para" data-o="19355" id="eid14107">or in Python with</div>
+      <figure class="figure" data-o="19372" id="eid14108" data-dashid="ufig14_53">
+        <img width="760" height="66" class="graphic" src="./9781482247350_1533.jpg" data-o="19372" id="eid14109" />
+      </figure>
+      <div class="para" data-o="19373" id="eid14110">This difference is shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14113" data-o="19401" id="eid14111" style="overflow-wrap: break-word;">Figure 14.6</a>. We can experiment with different levels of quantization. <span id="page_break_inline_421" data-previous="420" class="vbk-epub-pagebreak" epub:type="pagebreak" title="421"> </span>Suppose we take our extra parameter <span class="mono" data-o="19507" id="eid14112">n</span> to be 2. This has the effect of doubling each value in the normalization matrix, so we should set more of the DCT values to zero:</div>
+      <figure class="figure" data-o="19638" id="eid14113" data-dashid="fig14_6">
+        <img width="384" height="384" class="graphic" src="./9781482247350_1534.jpg" data-o="19709" id="eid14116" />
+        <figcaption>
+          <h2 class="title" data-o="19638" id="eid14114"><span class="label" data-o="19638" id="eid14115"><span class="label-inner">Figure 14.6: </span></span>The difference between an image and its JPEG decompression</h2>
+        </figcaption>
+      </figure>
+      <figure class="figure" data-o="19710" id="eid14117" data-dashid="ufig14_54">
+        <img width="760" height="172" class="graphic" src="./9781482247350_1535.jpg" data-o="19710" id="eid14118" />
+      </figure>
+      <div class="para" data-o="19711" id="eid14119">This means that only 8807 values are non-zero. We can also find that the maximum and minimum values of <span class="mono" data-o="19814" id="eid14120">cj</span> are 30 and −22. We can now decompress, and display the result and the difference with the same commands as above. The results are shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14122" data-o="19956" id="eid14121" style="overflow-wrap: break-word;">Figure 14.7</a>. Now we shall try a scale of 5:</div>
+      <figure class="figure" data-o="19999" id="eid14122" data-dashid="fig14_7">
+        <img width="760" height="352" class="graphic" src="./9781482247350_1536.jpg" data-o="20053" id="eid14125" />
+        <figcaption>
+          <h2 class="title" data-o="19999" id="eid14123"><span class="label" data-o="19999" id="eid14124"><span class="label-inner">Figure 14.7: </span></span>JPEG compression with a scale factor of 2</h2>
+        </figcaption>
+      </figure>
+      <span id="page_break_inline_422" data-previous="421" class="vbk-epub-pagebreak" epub:type="pagebreak" title="422"> </span>
+      <figure class="figure" data-o="20054" id="eid14126" data-dashid="ufig14_55">
+        <img width="760" height="192" class="graphic" src="./9781482247350_1537.jpg" data-o="20054" id="eid14127" />
+      </figure>
+      <div class="para" data-o="20055" id="eid14128">and the result and difference image are shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14131" data-o="20104" id="eid14129" style="overflow-wrap: break-word;">Figure 14.8</a>. At this stage we may be losing some fine detail, but the image is still remarkably good. We also note that as the scale factor increases, the range of values after the quantization decreases. For the matrix <span class="mono" data-o="20324" id="eid14130">cj</span> above, the maximum and minimum are 12 and −9.</div>
+      <figure class="figure" data-o="20372" id="eid14131" data-dashid="fig14_8">
+        <img width="760" height="352" class="graphic" src="./9781482247350_1538.jpg" data-o="20426" id="eid14134" />
+        <figcaption>
+          <h2 class="title" data-o="20372" id="eid14132"><span class="label" data-o="20372" id="eid14133"><span class="label-inner">Figure 14.8: </span></span>JPEG compression with a scale factor of 5</h2>
+        </figcaption>
+      </figure>
+      <div class="para" data-o="20427" id="eid14135">Finally, with a scale factor of 10, the maximum and minimum are 6 and −4, and we have only 1852 items of information. The results are shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14137" data-o="20570" id="eid14136" style="overflow-wrap: break-word;">Figure 14.9</a>. This image certainly shows considerable degradation; however, the animal is still quite clear.</div>
+      <figure class="figure" data-o="20677" id="eid14137" data-dashid="fig14_9">
+        <img width="760" height="353" class="graphic" src="./9781482247350_1539.jpg" data-o="20732" id="eid14140" />
+        <figcaption>
+          <h2 class="title" data-o="20677" id="eid14138"><span class="label" data-o="20677" id="eid14139"><span class="label-inner">Figure 14.9: </span></span>JPEG compression with a scale factor of 10</h2>
+        </figcaption>
+      </figure>
+      <div class="para" data-o="20733" id="eid14141">We can see the results of JPEG compression and decompression by looking at a closeup of the image; we shall investigate that portion of the animal around the top of the head:</div>
+      <span id="page_break_inline_423" data-previous="422" class="vbk-epub-pagebreak" epub:type="pagebreak" title="423"> </span>
+      <figure class="figure" data-o="20907" id="eid14142" data-dashid="ufig14_56">
+        <img width="760" height="67" class="graphic" src="./9781482247350_1540.jpg" data-o="20907" id="eid14143" />
+      </figure>
+      <div class="para" data-o="20908" id="eid14144">which is shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14148" data-o="20926" id="eid14145" style="overflow-wrap: break-word;">Figure 14.10</a>. The same areas, with the scales of 1 and 2, are shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14152" data-o="20997" id="eid14146" style="overflow-wrap: break-word;">Figure 14.11</a>. And the closeups, with the scales of 5 and 10, are shown in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_015.xhtml#eid14165" data-o="21071" id="eid14147" style="overflow-wrap: break-word;">Figure 14.12</a>. Notice that “blockiness” becomes more apparent as the scale factor increases. This is due to the working of the algorithm; that each 8 × 8 block is processed independently of the others. This tends to produce discontinuities in the output, and is one of the disadvantages of the JPEG algorithm for high levels of compression.</div>
+      <figure class="figure" data-o="21410" id="eid14148" data-dashid="fig14_10">
+        <img width="320" height="320" class="graphic" src="./9781482247350_1541.jpg" data-o="21440" id="eid14151" />
+        <figcaption>
+          <h2 class="title" data-o="21410" id="eid14149"><span class="label" data-o="21410" id="eid14150"><span class="label-inner">Figure 14.10: </span></span>An image closeup</h2>
+        </figcaption>
+      </figure>
+      <figure class="figure" data-o="21441" id="eid14152" data-dashid="fig14_11">
+        <img width="760" height="353" class="graphic" src="./9781482247350_1542.jpg" data-o="21498" id="eid14155" />
+        <figcaption>
+          <h2 class="title" data-o="21441" id="eid14153"><span class="label" data-o="21441" id="eid14154"><span class="label-inner">Figure 14.11: </span></span>Closeups after the scale factors of 1 and 2</h2>
+        </figcaption>
+      </figure>
+      <div class="para" data-o="21499" id="eid14156">In <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_016.xhtml#eid14483" data-o="21502" id="eid14157" style="overflow-wrap: break-word;">Chapter 15</a>, we shall see that some of these disadvantages can be overcome by using wavelets for compression.</div>
+      <div class="para" data-o="21610" id="eid14158">We have seen how changing the compression rate may affect the output. But the JPEG algorithm is particularly designed for storage. For example, suppose we take the original block from the caribou image, but divide it by double the quantization matrix. After reordering, the output vector will be</div>
+      <figure class="figure" data-o="21905" id="eid14159" data-dashid="ufig14_57">
+        <img width="313" height="11" class="graphic" src="./9781482247350_1543.jpg" data-o="21905" id="eid14160" />
+      </figure>
+      <div class="para" data-o="21906" id="eid14161">This vector is further encoded using Huffman coding. To do this, each element of the vector (except for the first), that is, each AC value, is defined to be in a particular <span class="mono" data-o="22079" id="eid14162">category</span> depending on its absolute value. In general, the value 0 is given category 0, and category <i data-o="22179" id="eid14163">k</i> <span id="page_break_inline_424" data-previous="423" class="vbk-epub-pagebreak" epub:type="pagebreak" title="424"> </span>contains all elements <i data-o="22203" id="eid14164">x</i> whose absolute value satisfies</div>
+      <figure class="figure" data-o="22235" id="eid14165" data-dashid="fig14_12">
+        <img width="760" height="353" class="graphic" src="./9781482247350_1544.jpg" data-o="22293" id="eid14168" />
+        <figcaption>
+          <h2 class="title" data-o="22235" id="eid14166"><span class="label" data-o="22235" id="eid14167"><span class="label-inner">Figure 14.12: </span></span>Closeups after the scale factors of 5 and 10</h2>
+        </figcaption>
+      </figure>
+      <div class="para" style="text-align:center;" data-o="22294" id="eid14169">
+        <span class="inline" data-o="22294" id="eid14170">
+          <img width="143" height="19" class="inlinegraphic" src="./9781482247350_1545.jpg" data-o="22294" id="eid14171" />
+        </span>
+      </div>
+      <div class="para" data-o="22295" id="eid14172">The categories are also used for the differences of the first (DC) value. The first few categories are:</div>
+      <div class="table" data-o="22398" id="eid14173" data-dashid="utbl424_1">
+        <div class="para" data-o="22398" id="eid14174" />
+        <table rules="groups" style="border-width:px;" data-o="22398" id="eid14175">
+          <colgroup span="1" data-o="22398" id="eid14176">
+            <col width="50%" span="1" data-o="22398" id="eid14177" />
+            <col width="25%" span="1" data-o="22398" id="eid14178" />
+            <col width="25%" span="1" data-o="22398" id="eid14179" />
+          </colgroup>
+          <thead data-o="22398" id="eid14180">
+            <tr valign="bottom" style="vertical-align:bottom;" data-o="22398" id="eid14181">
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:solid none solid solid ;border-width:1px;border-color:black;" data-o="22398" id="eid14182">
+                <div class="para" data-o="22398" id="eid14183">Range</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none solid none;border-width:1px;border-color:black;" data-o="22403" id="eid14184">
+                <div class="para" data-o="22403" id="eid14185">DC Category</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid solid solid none;border-width:1px;border-color:black;" data-o="22414" id="eid14186">
+                <div class="para" data-o="22414" id="eid14187">AC Category</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody data-o="22425" id="eid14188">
+            <tr valign="top" style="vertical-align:top;" data-o="22425" id="eid14189">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:solid none none solid ;border-width:1px;border-color:black;" data-o="22425" id="eid14190">
+                <div class="para" data-o="22425" id="eid14191">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none none none;border-width:1px;border-color:black;" data-o="22426" id="eid14192">
+                <div class="para" data-o="22426" id="eid14193">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid solid none none;border-width:1px;border-color:black;" data-o="22427" id="eid14194">
+                <div class="para" data-o="22427" id="eid14195">Not applicable</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="22441" id="eid14196">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="22441" id="eid14197">
+                <div class="para" data-o="22441" id="eid14198">−1, 1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="22446" id="eid14199">
+                <div class="para" data-o="22446" id="eid14200">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="22447" id="eid14201">
+                <div class="para" data-o="22447" id="eid14202">1</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="22448" id="eid14203">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="22448" id="eid14204">
+                <div class="para" data-o="22448" id="eid14205">−3, −2, 2, 3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="22460" id="eid14206">
+                <div class="para" data-o="22460" id="eid14207">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="22461" id="eid14208">
+                <div class="para" data-o="22461" id="eid14209">2</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="22462" id="eid14210">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="22462" id="eid14211">
+                <div class="para" data-o="22462" id="eid14212">−7, …, −4, 4, …, 7</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="22480" id="eid14213">
+                <div class="para" data-o="22480" id="eid14214">3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="22481" id="eid14215">
+                <div class="para" data-o="22481" id="eid14216">3</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="22482" id="eid14217">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none solid solid ;border-width:1px;border-color:black;" data-o="22482" id="eid14218">
+                <div class="para" data-o="22482" id="eid14219">−15, …, −8, 8, …, 15</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none solid none;border-width:1px;border-color:black;" data-o="22502" id="eid14220">
+                <div class="para" data-o="22502" id="eid14221">4</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid solid none;border-width:1px;border-color:black;" data-o="22503" id="eid14222">
+                <div class="para" data-o="22503" id="eid14223">4</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="para" data-o="22504" id="eid14224">To encode the vector, the category is used with all non-zero terms, along with the number of preceding zeros. For example, for the vector above:</div>
+      <div class="table" data-o="22648" id="eid14225" data-dashid="utbl424_2">
+        <img width="760" height="83" class="graphic" src="./9781482247350_1546.jpg" aria-label=" Values: 7 −1 10 0 2 1 0 0 2 4 0 1 0 −1 Category: 1 4 2 1 2 3 1 1 Preceding zeros: 0 0 1 0 2 0 1 1 " data-o="22648" id="eid14226" />
+        <div style="display: none;" class="textualrep" data-o="22649" id="eid14227"> Values: 7 −1 10 0 2 1 0 0 2 4 0 1 0 −1 Category: 1 4 2 1 2 3 1 1 Preceding zeros: 0 0 1 0 2 0 1 1 </div>
+      </div>
+      <div class="para" data-o="22649" id="eid14228">For each non-zero AC value then, a binary vector is produced containing the Huffman code for its particular category and run of preceding zeros, followed by a sign bit (0 for negative, 1 for positive), and then for category <i data-o="22873" id="eid14229">k</i> a run of <i data-o="22884" id="eid14230">k</i> − 1 bits indicating the position within that category. The Huffman code table is provided as part of the JPEG baseline standard; for the first few categories and runs, they are:</div>
+      <div class="table" data-o="23063" id="eid14231" data-dashid="utbl424_3">
+        <div class="para" data-o="23063" id="eid14232" />
+        <table rules="groups" style="border-width:px;" data-o="23063" id="eid14233">
+          <colgroup span="1" data-o="23063" id="eid14234">
+            <col width="50%" span="1" data-o="23063" id="eid14235" />
+            <col width="25%" span="1" data-o="23063" id="eid14236" />
+            <col width="25%" span="1" data-o="23063" id="eid14237" />
+          </colgroup>
+          <thead data-o="23063" id="eid14238">
+            <tr valign="bottom" style="vertical-align:bottom;" data-o="23063" id="eid14239">
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:solid none solid solid ;border-width:1px;border-color:black;" data-o="23063" id="eid14240">
+                <div class="para" data-o="23063" id="eid14241">Run</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none solid none;border-width:1px;border-color:black;" data-o="23066" id="eid14242">
+                <div class="para" data-o="23066" id="eid14243">Category</div>
+              </th>
+              <th align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid solid solid none;border-width:1px;border-color:black;" data-o="23074" id="eid14244">
+                <div class="para" data-o="23074" id="eid14245">Code</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody data-o="23078" id="eid14246">
+            <tr valign="top" style="vertical-align:top;" data-o="23078" id="eid14247">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:solid none none solid ;border-width:1px;border-color:black;" data-o="23078" id="eid14248">
+                <div class="para" data-o="23078" id="eid14249">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid none none none;border-width:1px;border-color:black;" data-o="23079" id="eid14250">
+                <div class="para" data-o="23079" id="eid14251">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:solid solid none none;border-width:1px;border-color:black;" data-o="23080" id="eid14252">
+                <div class="para" data-o="23080" id="eid14253">1010</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23084" id="eid14254">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23084" id="eid14255">
+                <div class="para" data-o="23084" id="eid14256">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23085" id="eid14257">
+                <div class="para" data-o="23085" id="eid14258">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23086" id="eid14259">
+                <div class="para" data-o="23086" id="eid14260">00</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23088" id="eid14261">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23088" id="eid14262">
+                <div class="para" data-o="23088" id="eid14263">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23089" id="eid14264">
+                <div class="para" data-o="23089" id="eid14265">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23090" id="eid14266">
+                <div class="para" data-o="23090" id="eid14267">01</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23092" id="eid14268">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23092" id="eid14269">
+                <div class="para" data-o="23092" id="eid14270">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23093" id="eid14271">
+                <div class="para" data-o="23093" id="eid14272">3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23094" id="eid14273">
+                <div class="para" data-o="23094" id="eid14274">100</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23097" id="eid14275">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23097" id="eid14276">
+                <div class="para" data-o="23097" id="eid14277">0</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23098" id="eid14278">
+                <div class="para" data-o="23098" id="eid14279">4</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23099" id="eid14280">
+                <div class="para" data-o="23099" id="eid14281">1011</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23103" id="eid14282">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23103" id="eid14283">
+                <div class="para" data-o="23103" id="eid14284">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23104" id="eid14285">
+                <div class="para" data-o="23104" id="eid14286">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23105" id="eid14287">
+                <div class="para" data-o="23105" id="eid14288">1100</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23109" id="eid14289">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23109" id="eid14290">
+                <div class="para" data-o="23109" id="eid14291">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23110" id="eid14292">
+                <div class="para" data-o="23110" id="eid14293">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23111" id="eid14294">
+                <div class="para" data-o="23111" id="eid14295">111001</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23117" id="eid14296">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23117" id="eid14297">
+                <div class="para" data-o="23117" id="eid14298">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23118" id="eid14299">
+                <div class="para" data-o="23118" id="eid14300">3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23119" id="eid14301">
+                <div class="para" data-o="23119" id="eid14302">1111001</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23126" id="eid14303">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23126" id="eid14304">
+                <div class="para" data-o="23126" id="eid14305">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23127" id="eid14306">
+                <div class="para" data-o="23127" id="eid14307">4</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23128" id="eid14308">
+                <div class="para" data-o="23128" id="eid14309">111110110</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23137" id="eid14310">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23137" id="eid14311">
+                <div class="para" data-o="23137" id="eid14312">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23138" id="eid14313">
+                <div class="para" data-o="23138" id="eid14314">1</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23139" id="eid14315">
+                <div class="para" data-o="23139" id="eid14316">11011</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23144" id="eid14317">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none none solid ;border-width:1px;border-color:black;" data-o="23144" id="eid14318">
+                <div class="para" data-o="23144" id="eid14319">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;" data-o="23145" id="eid14320">
+                <div class="para" data-o="23145" id="eid14321">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid none none;border-width:1px;border-color:black;" data-o="23146" id="eid14322">
+                <div class="para" data-o="23146" id="eid14323">11111000</div>
+              </td>
+            </tr>
+            <tr valign="top" style="vertical-align:top;" data-o="23154" id="eid14324">
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:50%px;border-style:none none solid solid ;border-width:1px;border-color:black;" data-o="23154" id="eid14325">
+                <div class="para" data-o="23154" id="eid14326">2</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none none solid none;border-width:1px;border-color:black;" data-o="23155" id="eid14327">
+                <div class="para" data-o="23155" id="eid14328">3</div>
+              </td>
+              <td align="left" rowspan="1" colspan="1" style="text-align:left;padding:3px;width:25%px;border-style:none solid solid none;border-width:1px;border-color:black;" data-o="23156" id="eid14329">
+                <div class="para" data-o="23156" id="eid14330">1111110111</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <span id="page_break_inline_425" data-previous="424" class="vbk-epub-pagebreak" epub:type="pagebreak" title="425"> </span>
+      <div class="para" data-o="23166" id="eid14331">A full table is given by Gonzalez and Woods [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid16949" data-o="23211" id="eid14332" style="overflow-wrap: break-word;">13</a>]. For the non-zero AC values in the above vector, the output binary strings will be created from:</div>
+      <div class="table" data-o="23311" id="eid14333" data-dashid="utbl425_1">
+        <img width="563" height="303" class="graphic" src="./9781482247350_1547.jpg" aria-label=" Run Category Code Sign Position 0 1 00 0 0 0 4 1011 1 011 1 2 111001 1 0 0 1 00 1 1 2 2 11111000 1 0 0 3 100 1 00 1 1 1100 1 0 1 1 1100 0 0 " data-o="23311" id="eid14334" />
+        <div style="display: none;" class="textualrep" data-o="23312" id="eid14335"> Run Category Code Sign Position 0 1 00 0 0 0 4 1011 1 011 1 2 111001 1 0 0 1 00 1 1 2 2 11111000 1 0 0 3 100 1 00 1 1 1100 1 0 1 1 1100 0 0 </div>
+      </div>
+      <div class="para" data-o="23312" id="eid14336">The output string of bits for this block will consist of the code for the difference of the DC coefficient, followed by:</div>
+      <div class="para" style="text-align:center;" data-o="23432" id="eid14337">
+        <span class="inline" data-o="23432" id="eid14338">
+          <img width="488" height="16" class="inlinegraphic" src="./9781482247350_1548.jpg" data-o="23432" id="eid14339" />
+        </span>
+      </div>
+      <div class="para" data-o="23433" id="eid14340">where the lines just show the individual strings. Assuming 8 bits for the first code, the entire block has been encoded with only 60 bits,</div>
+      <div class="para" style="text-align:center;" data-o="23571" id="eid14341">
+        <span class="inline" data-o="23571" id="eid14342">
+          <img width="92" height="16" class="inlinegraphic" src="./9781482247350_1549.jpg" data-o="23571" id="eid14343" />
+        </span>
+      </div>
+      <div class="para" data-o="23572" id="eid14344">bit per pixel: a compression rate of over 8.5.</div>
+      <div class="para" data-o="23618" id="eid14345">For a detailed account of the JPEG algorithm, see Pennebaker [<a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_018.xhtml#eid17078" data-o="23680" id="eid14346" style="overflow-wrap: break-word;">56</a>].</div>
+    </section>
+    <section class="level" epub:type="subchapter" data-o="23684" id="eid14347" data-dashid="lvl14_6">
+      <h2 class="title" data-o="23684" id="eid14348" data-out="14.6"><span class="label" data-o="23684" id="eid14349"><span class="label-inner">14.6 </span></span>Programs</h2>
+      <div class="para" data-o="23697" id="eid14350">Start with some programs in MATLAB/Octave for LZW compression of uppercase text:</div>
+      <figure class="figure" data-o="23777" id="eid14351" data-dashid="ufig14_58">
+        <img width="760" height="463" class="graphic" src="./9781482247350_1550.jpg" data-o="23777" id="eid14352" />
+      </figure>
+      <span id="page_break_inline_426" data-previous="425" class="vbk-epub-pagebreak" epub:type="pagebreak" title="426"> </span>
+      <figure class="figure" data-o="23778" id="eid14353" data-dashid="ufig14_59">
+        <img width="760" height="232" class="graphic" src="./9781482247350_1551.jpg" data-o="23778" id="eid14354" />
+      </figure>
+      <div class="para" data-o="23779" id="eid14355">and for decompression of the resulting code:</div>
+      <figure class="figure" data-o="23823" id="eid14356" data-dashid="ufig14_60">
+        <img width="760" height="658" class="graphic" src="./9781482247350_1552.jpg" data-o="23823" id="eid14357" />
+      </figure>
+      <div class="para" data-o="23824" id="eid14358">Finally, the LZW program slightly adjusted to manage images of type <span class="mono" data-o="23892" id="eid14359">unit8</span>. Note that this program does no error checking, so that if the image is not of type <span class="mono" data-o="23982" id="eid14360">unit8</span> the program will produce rubbish.</div>
+      <figure class="figure" data-o="24021" id="eid14361" data-dashid="ufig14_61">
+        <img width="760" height="169" class="graphic" src="./9781482247350_1553.jpg" data-o="24021" id="eid14362" />
+      </figure>
+      <span id="page_break_inline_427" data-previous="426" class="vbk-epub-pagebreak" epub:type="pagebreak" title="427"> </span>
+      <figure class="figure" data-o="24022" id="eid14363" data-dashid="ufig14_62">
+        <img width="760" height="414" class="graphic" src="./9781482247350_1554.jpg" data-o="24022" id="eid14364" />
+      </figure>
+      <div class="para" data-o="24023" id="eid14365">For Python, here is the program file which contains all three functions: compression of uppercase text and of images, and decompressing to text.</div>
+      <figure class="figure" data-o="24167" id="eid14366" data-dashid="ufig14_63">
+        <img width="760" height="696" class="graphic" src="./9781482247350_1555.jpg" data-o="24167" id="eid14367" />
+      </figure>
+      <span id="page_break_inline_428" data-previous="427" class="vbk-epub-pagebreak" epub:type="pagebreak" title="428"> </span>
+      <figure class="figure" data-o="24168" id="eid14368" data-dashid="ufig14_64">
+        <img width="600" height="800" class="graphic" src="./9781482247350_1556.jpg" data-o="24168" id="eid14369" />
+      </figure>
+      <span id="page_break_inline_429" data-previous="428" class="vbk-epub-pagebreak" epub:type="pagebreak" title="429"> </span>
+      <div class="box" data-o="24169" id="eid14370">
+        <h2 class="title" data-o="24169" id="eid14371" data-out="14.6.1">Exercises</h2>
+        <div class="list" data-o="24178" id="eid14372">
+          <ul>
+            <li data-o="24178" id="eid14373">
+              <span class="label" data-o="24178" id="eid14374">
+                <span class="label-inner">1.</span>
+              </span>
+              <span class="item" data-o="24180" id="eid14375">Construct a Huffman code for each of the probability tables given:</span>
+              <div class="table" data-o="24246" id="eid14376" data-dashid="utbl429_1">
+                <img width="734" height="134" class="graphic" src="./9781482247350_1557.jpg" aria-label=" Grayscale 0 1 2 3 4 5 6 7 Probability (a) .07 .11 .08 .04 .5 .05 .06 .09 (b) .13 .12 .13 .13 .12 .12 .12 .13 (c) .09 .13 .15 .1 .14 .12 .11 .16 " data-o="24246" id="eid14377" />
+                <div style="display: none;" class="textualrep" data-o="24247" id="eid14378"> Grayscale 0 1 2 3 4 5 6 7 Probability (a) .07 .11 .08 .04 .5 .05 .06 .09 (b) .13 .12 .13 .13 .12 .12 .12 .13 (c) .09 .13 .15 .1 .14 .12 .11 .16 </div>
+              </div>
+              <div class="item" data-o="24247" id="eid14379">In each case, determine the average bits/pixel given by your code.</div>
+            </li>
+            <li data-o="24313" id="eid14380">
+              <span class="label" data-o="24313" id="eid14381">
+                <span class="label-inner">2.</span>
+              </span>
+              <span class="item" data-o="24315" id="eid14382">From your results of the previous question, what do you think are the conditions of the probability distribution which give rise to a high compression rate using Huffman coding?</span>
+            </li>
+            <li data-o="24492" id="eid14383">
+              <span class="label" data-o="24492" id="eid14384">
+                <span class="label-inner">3.</span>
+              </span>
+              <span class="item" data-o="24494" id="eid14385">Download a Huffman code program (or write one of your own), and test it on the examples given.</span>
+              <div class="item" data-o="24588" id="eid14386">Then try it on different images. What sort of compression rates do you obtain? What sorts of images seem to have the best compression rates?</div>
+              <div class="item" data-o="24728" id="eid14387">Note: Both Octave and MATLAB have Huffman routines in their Communications toolboxes; a Python routine can be found at <span class="mono" data-o="24847" id="eid14388"><a href="http://rosettacode.org/wiki/Huffman_coding#Python" data-o="24847" id="eid14389" style="overflow-wrap: break-word;">http://rosettacode.org/wiki/Huffman_coding#Python</a></span>.</div>
+            </li>
+            <li data-o="24897" id="eid14390">
+              <span class="label" data-o="24897" id="eid14391">
+                <span class="label-inner">4.</span>
+              </span>
+              <span class="item" data-o="24899" id="eid14392">Encode each of the following binary images using run length encoding:</span>
+              <div class="list" data-o="24968" id="eid14393">
+                <ul>
+                  <li data-o="24968" id="eid14394">
+                    <span class="label" data-o="24968" id="eid14395">
+                      <span class="label-inner">(a)</span>
+                    </span>
+                    <span class="item" data-o="24971" id="eid14396">
+                      <span class="inline" data-o="24971" id="eid14397">
+                        <img width="187" height="110" class="inlinegraphic" src="./9781482247350_1558.jpg" data-o="24971" id="eid14398" />
+                      </span>
+                    </span>
+                  </li>
+                  <li data-o="24972" id="eid14399">
+                    <span class="label" data-o="24972" id="eid14400">
+                      <span class="label-inner">(b)</span>
+                    </span>
+                    <span class="item" data-o="24975" id="eid14401">
+                      <span class="inline" data-o="24975" id="eid14402">
+                        <img width="187" height="110" class="inlinegraphic" src="./9781482247350_1559.jpg" data-o="24975" id="eid14403" />
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li data-o="24976" id="eid14404">
+              <span class="label" data-o="24976" id="eid14405">
+                <span class="label-inner">5.</span>
+              </span>
+              <span class="item" data-o="24978" id="eid14406">Using run length encoding, encode each of the following 4-bit images:</span>
+              <div class="list" data-o="25047" id="eid14407">
+                <ul>
+                  <li data-o="25047" id="eid14408">
+                    <span class="label" data-o="25047" id="eid14409">
+                      <span class="label-inner">(a)</span>
+                    </span>
+                    <span class="item" data-o="25050" id="eid14410">
+                      <span class="inline" data-o="25050" id="eid14411">
+                        <img width="187" height="110" class="inlinegraphic" src="./9781482247350_1560.jpg" data-o="25050" id="eid14412" />
+                      </span>
+                    </span>
+                  </li>
+                  <li data-o="25051" id="eid14413">
+                    <span class="label" data-o="25051" id="eid14414">
+                      <span class="label-inner">(b)</span>
+                    </span>
+                    <span class="item" data-o="25054" id="eid14415">
+                      <span class="inline" data-o="25054" id="eid14416">
+                        <img width="267" height="110" class="inlinegraphic" src="./9781482247350_1561.jpg" data-o="25054" id="eid14417" />
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li data-o="25055" id="eid14418">
+              <span class="label" data-o="25055" id="eid14419">
+                <span class="label-inner">6.</span>
+              </span>
+              <span class="item" data-o="25057" id="eid14420">Check your answers to the previous two questions with the techniques discussed in this chapter. You can isolate the bit planes by using the technique discussed in <a href="https://jigsaw.vitalsource.com/books/9781482247350/epub/OPS/loc_004.xhtml#eid2102" data-o="25220" id="eid14421" style="overflow-wrap: break-word;">Section 3.3</a>.</span>
+            </li>
+            <li data-o="25232" id="eid14422">
+              <span class="label" data-o="25232" id="eid14423">
+                <span class="label-inner">7.</span>
+              </span>
+              <span class="item" data-o="25234" id="eid14424">Encode the preceding images using the 4-bit Gray code, and apply run length encoding to the bit planes of the result.</span>
+              <div class="item" data-o="25351" id="eid14425">Compare the results obtained using Gray codes, and standard binary codes.</div>
+            </li>
+            <li data-o="25424" id="eid14426">
+              <span class="label" data-o="25424" id="eid14427">
+                <span class="label-inner">8.</span>
+              </span>
+              <span class="item" data-o="25426" id="eid14428">Write a function for restoring a binary image from a run length code. Test it on the images and codes from the previous questions.</span>
+            </li>
+            <li data-o="25556" id="eid14429">
+              <span class="label" data-o="25556" id="eid14430">
+                <span class="label-inner">9.</span>
+              </span>
+              <span class="item" data-o="25558" id="eid14431">The following are the run-length encodings for a 4 × 4 4-bit image from most to least important bit-planes:</span>
+              <span id="page_break_inline_430" data-previous="429" class="vbk-epub-pagebreak" epub:type="pagebreak" title="430"> </span>
+              <figure class="figure" data-o="25665" id="eid14432" data-dashid="ufig14_65">
+                <img width="249" height="71" class="graphic" src="./9781482247350_1562.jpg" data-o="25665" id="eid14433" />
+              </figure>
+              <div class="item" data-o="25666" id="eid14434">Construct the image.</div>
+            </li>
+            <li data-o="25686" id="eid14435">
+              <span class="label" data-o="25686" id="eid14436">
+                <span class="label-inner">10.</span>
+              </span>
+              <span class="item" data-o="25689" id="eid14437"> </span>
+              <div class="list" data-o="25690" id="eid14438">
+                <ul>
+                  <li data-o="25690" id="eid14439">
+                    <span class="label" data-o="25690" id="eid14440">
+                      <span class="label-inner">(a)</span>
+                    </span>
+                    <span class="item" data-o="25693" id="eid14441">Given the following 4-bit image:</span>
+                    <figure class="figure" data-o="25725" id="eid14442" data-dashid="ufig14_66">
+                      <img width="259" height="150" class="graphic" src="./9781482247350_1563.jpg" data-o="25725" id="eid14443" />
+                    </figure>
+                    <div class="item" data-o="25726" id="eid14444">transform it to a 3-bit image by removing the least most significant bit plane. Construct a Huffman code on the result and determine the average number of bits/pixel used by the code.</div>
+                  </li>
+                  <li data-o="25909" id="eid14445">
+                    <span class="label" data-o="25909" id="eid14446">
+                      <span class="label-inner">(b)</span>
+                    </span>
+                    <span class="item" data-o="25912" id="eid14447">Now apply Huffman coding to the original image and determine the average number of bits/pixel used by the code.</span>
+                  </li>
+                  <li data-o="26023" id="eid14448">
+                    <span class="label" data-o="26023" id="eid14449">
+                      <span class="label-inner">(c)</span>
+                    </span>
+                    <span class="item" data-o="26026" id="eid14450">Which of the two codes gives the best rate of compression?</span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li data-o="26084" id="eid14451">
+              <span class="label" data-o="26084" id="eid14452">
+                <span class="label-inner">11.</span>
+              </span>
+              <span class="item" data-o="26087" id="eid14453">By hand, apply LZW encoding to the phrases</span>
+              <div class="list" data-o="26129" id="eid14454">
+                <ul>
+                  <li data-o="26129" id="eid14455">
+                    <span class="label" data-o="26129" id="eid14456">
+                      <span class="label-inner">(a)</span>
+                    </span>
+                    <span class="item" data-o="26132" id="eid14457">HOWNOWBROWNCOW</span>
+                  </li>
+                  <li data-o="26146" id="eid14458">
+                    <span class="label" data-o="26146" id="eid14459">
+                      <span class="label-inner">(b)</span>
+                    </span>
+                    <span class="item" data-o="26149" id="eid14460">REALLYREALCEREALDEAL</span>
+                    <div class="item" data-o="26169" id="eid14461">and decode the results.</div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li data-o="26192" id="eid14462">
+              <span class="label" data-o="26192" id="eid14463">
+                <span class="label-inner">12.</span>
+              </span>
+              <span class="item" data-o="26195" id="eid14464">Experiment with LZW coding of images. Which image has the best compression rate and which image has the worst?</span>
+            </li>
+            <li data-o="26305" id="eid14465">
+              <span class="label" data-o="26305" id="eid14466">
+                <span class="label-inner">13.</span>
+              </span>
+              <span class="item" data-o="26308" id="eid14467">Write a program to perform LZW uncompression of an image code, and apply it to the codes from the previous question.</span>
+            </li>
+            <li data-o="26424" id="eid14468">
+              <span class="label" data-o="26424" id="eid14469">
+                <span class="label-inner">14.</span>
+              </span>
+              <span class="item" data-o="26427" id="eid14470">Apply JPEG compression to an 8 × 8 block consisting of (a) all the same value, (b) the left half one value, and the right half another, (c) random values uniformly distributed in the 0–255 range.</span>
+              <div class="item" data-o="26622" id="eid14471">Compare the length of the code vector in each case, and the results of decompression.</div>
+            </li>
+            <li data-o="26707" id="eid14472">
+              <span class="label" data-o="26707" id="eid14473">
+                <span class="label-inner">15.</span>
+              </span>
+              <span class="item" data-o="26710" id="eid14474">Open the image <span class="mono" data-o="26725" id="eid14475">engineer.png</span>.</span>
+              <div class="item" data-o="26738" id="eid14476">Using the JPEG compression commands described above, attempt to compress this image using greater and greater compression rates. What is the largest quantization scale factor for which the image is still recognizable? How many zeros are in the DCT block matrix?</div>
+            </li>
+            <li data-o="26999" id="eid14477">
+              <span class="label" data-o="26999" id="eid14478">
+                <span class="label-inner">16.</span>
+              </span>
+              <span class="item" data-o="27002" id="eid14479">Apply the given JPEG Huffman codes to the vector:</span>
+              <figure class="figure" data-o="27051" id="eid14480" data-dashid="ufig14_67">
+                <img width="464" height="11" class="graphic" src="./9781482247350_1564.jpg" data-o="27051" id="eid14481" />
+              </figure>
+              <div class="item" data-o="27052" id="eid14482">and determine the compression rate.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  <style type="text/css">.vsthighlight { cursor: pointer; } .disabledHighlight { background: #ECECEC !important; border-color: #B3B3B3 !important; cursor: default !important; } .disabledHighlight.vst-shared-highlight { background: transparent !important; }</style><style type="text/css">.tts-highlight { background: yellow !important; }</style></body>
+  <script type="text/javascript" id="vst-html-javascript" class="vst-ignore vst-skip">VST.Epub.contentReady(window, document); VST.cfiBase='/4';</script>
+</html>
